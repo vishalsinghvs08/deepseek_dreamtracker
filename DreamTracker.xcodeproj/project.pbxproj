@@ -40,6 +40,8 @@
 		B004000000000000000004 /* JailbreakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004000000000000000003 /* JailbreakDetector.swift */; };
 		DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
 		DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
+		CAL001000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */; };
+		CAL002000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,7 @@
 		000000000000000000000253 /* DreamSyncServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamSyncServiceTests.swift; path = DreamTrackerTests/DreamSyncServiceTests.swift; sourceTree = "<group>"; };
 		00000000000000000000028F /* APIRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIRoute.swift; path = DreamTracker/Network/APIRoute.swift; sourceTree = "<group>"; };
 		26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/JournalView.swift; sourceTree = SOURCE_ROOT; };
+		CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/CalendarView.swift; sourceTree = SOURCE_ROOT; };
 		8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/LockView.swift; sourceTree = SOURCE_ROOT; };
 		B001000000000000000001 /* DreamModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamModels.swift; path = DreamTracker/Model/DreamModels.swift; sourceTree = "<group>"; };
 		B001000000000000000003 /* DreamStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamStore.swift; path = DreamTracker/Model/DreamStore.swift; sourceTree = "<group>"; };
@@ -248,6 +251,7 @@
 			children = (
 				8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */,
 				26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */,
+				CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */,
 				B001000000000000000005 /* DreamsView.swift */,
 				B002000000000000000001 /* DreamDetailView.swift */,
 			);
@@ -421,6 +425,7 @@
 				B003000000000000000002 /* StoreManager.swift in Sources */,
 				B004000000000000000002 /* DeviceKeychain.swift in Sources */,
 				B004000000000000000004 /* JailbreakDetector.swift in Sources */,
+				CAL001000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +451,7 @@
 				00000000000000000000010C /* DreamTrackerUITests.swift in Sources */,
 				DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */,
 				DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */,
+				CAL002000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,17 @@
 import SwiftUI
 import TipKit
 
+// MARK: - Horizon Color Helper
+private func horizonColor(_ horizon: TimeHorizon) -> Color {
+    switch horizon {
+    case .sixMonths: return .orange
+    case .oneYear:   return .green
+    case .threeYears:return .blue
+    case .fiveYears: return .purple
+    case .tenYears:  return .indigo
+    }
+}
+
 // MARK: - Dreams View
 
 struct DreamsView: View {
@@ -10,6 +21,8 @@ struct DreamsView: View {
     @State private var newDreamText = ""
     @State private var showSettings = false
     @State private var showProUpgrade = false
+    @State private var showConfetti = false
+    @State private var draggingDream: Dream?
     @FocusState private var isFocused: Bool
 
     private let maxFreePerHorizon = 3
@@ -39,10 +52,10 @@ struct DreamsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Gradient underlay — like iOS Weather
+                // Canvas background — warm, dreamy, tinted to active horizon
                 LinearGradient(
                     colors: [
-                        Color.blue.opacity(0.06),
+                        horizonColor(activeHorizon).opacity(0.06),
                         Color(.systemGroupedBackground),
                         Color(.systemGroupedBackground)
                     ],
@@ -50,24 +63,39 @@ struct DreamsView: View {
                     endPoint: .center
                 )
                 .ignoresSafeArea()
+                .animation(.easeInOut(duration: 0.5), value: activeHorizon)
 
                 VStack(spacing: 0) {
                     progressHeader
                         .padding(.horizontal, 16)
                         .padding(.top, 8)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 6)
+
                     horizonPicker
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 10)
-                    Divider()
+                        .padding(.horizontal, 12)
+                        .padding(.bottom, 12)
+
                     if filteredDreams.isEmpty {
                         emptyState
                     } else {
-                        dreamList
+                        dreamCanvas
                     }
                 }
+
+                // Confetti overlay
+                if showConfetti {
+                    ConfettiOverlay()
+                        .allowsHitTesting(false)
+                        .transition(.opacity)
+                }
+
+                // Floating add button
+                addButton
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 16)
             }
-            .navigationTitle("Dreams")
+            .navigationTitle("Dream Canvas")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { showSettings = true } label: {
@@ -79,11 +107,6 @@ struct DreamsView: View {
             .sheet(isPresented: $showSettings) { settingsSheet }
             .sheet(isPresented: $showAddSheet) { addDreamSheet }
             .sheet(isPresented: $showProUpgrade) { proUpgradeSheet }
-            .overlay(alignment: .bottomTrailing) {
-                addButton
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 16)
-            }
         }
     }
 
@@ -91,7 +114,6 @@ struct DreamsView: View {
 
     private var progressHeader: some View {
         HStack(spacing: 12) {
-            // Circular progress
             ZStack {
                 Circle()
                     .stroke(Color(.systemGray5), lineWidth: 3)
@@ -99,7 +121,7 @@ struct DreamsView: View {
 
                 Circle()
                     .trim(from: 0, to: totalDreams > 0 ? CGFloat(totalCompleted) / CGFloat(totalDreams) : 0)
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                    .stroke(horizonColor(activeHorizon), style: StrokeStyle(lineWidth: 3, lineCap: .round))
                     .frame(width: 32, height: 32)
                     .rotationEffect(.degrees(-90))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: totalCompleted)
@@ -116,15 +138,16 @@ struct DreamsView: View {
         }
     }
 
-    // MARK: - Horizon Pills
+    // MARK: - Horizon Pills (per-horizon colored!)
 
     private var horizonPicker: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
+            HStack(spacing: 10) {
                 ForEach(horizons) { horizon in
                     let count = viewModel.dreams.filter { $0.horizon == horizon }.count
                     let done = viewModel.dreams.filter { $0.horizon == horizon && $0.isCompleted }.count
                     let isActive = activeHorizon == horizon
+                    let color = horizonColor(horizon)
 
                     Button {
                         let generator = UIImpactFeedbackGenerator(style: .light)
@@ -134,31 +157,37 @@ struct DreamsView: View {
                         }
                     } label: {
                         HStack(spacing: 6) {
-                            // Mini dot indicator
                             Circle()
-                                .fill(dotColor(total: count, done: done, isActive: isActive))
-                                .frame(width: 6, height: 6)
+                                .fill(isActive ? .white : color)
+                                .frame(width: 7, height: 7)
 
                             Text(horizon.shortLabel)
-                                .font(.system(size: 14, weight: isActive ? .semibold : .regular))
+                                .font(.system(size: 14, weight: isActive ? .semibold : .medium))
+                                .foregroundColor(isActive ? .white : .primary)
 
                             if count > 0 {
                                 Text("\(done)/\(count)")
                                     .font(.system(size: 11, weight: .medium))
-                                    .foregroundColor(isActive ? .white.opacity(0.7) : .secondary)
+                                    .foregroundColor(isActive ? .white.opacity(0.8) : .secondary)
+                            }
+
+                            if isActive {
+                                Image(systemName: "chevron.down")
+                                    .font(.system(size: 8, weight: .bold))
+                                    .foregroundColor(.white.opacity(0.7))
                             }
                         }
-                        .foregroundColor(isActive ? .white : .primary)
                         .padding(.horizontal, 14)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 10)
                         .background(
                             Capsule()
-                                .fill(isActive ? Color.blue : Color(.systemGray6))
+                                .fill(isActive ? color : Color(.systemGray6))
                         )
                         .overlay(
                             Capsule()
                                 .stroke(isActive ? Color.clear : Color(.systemGray4), lineWidth: 0.5)
                         )
+                        .shadow(color: isActive ? color.opacity(0.3) : .clear, radius: 4, y: 2)
                     }
                     .scrollTransition(.interactive, axis: .horizontal) { content, phase in
                         content
@@ -171,66 +200,216 @@ struct DreamsView: View {
         }
     }
 
-    private func dotColor(total: Int, done: Int, isActive: Bool) -> Color {
-        if total == 0 { return isActive ? .white.opacity(0.4) : .gray.opacity(0.3) }
-        if done == total { return .green }
-        return isActive ? .white : .blue
-    }
+    // MARK: - Dream Canvas (flowing card layout)
 
-    // MARK: - Dream List
+    private var dreamCanvas: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                // Section header
+                HStack {
+                    Text("\(filteredDreams.count) dream\(filteredDreams.count == 1 ? "" : "s")")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                        .textCase(.uppercase)
+                    Spacer()
+                    if completedCount > 0 {
+                        Text("\(completedCount) ✦ done")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundColor(horizonColor(activeHorizon))
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 4)
 
-    private var dreamList: some View {
-        List {
-            Section {
-                ForEach(filteredDreams) { dream in
+                // Flowing cards
+                ForEach(Array(filteredDreams.enumerated()), id: \.element.id) { index, dream in
                     NavigationLink {
                         DreamDetailView(dream: dream, animationNamespace: animationNamespace)
                     } label: {
-                        DreamRow(dream: dream) {
-                            viewModel.toggleDream(id: dream.id)
-                        }
-                        .matchedGeometryEffect(id: "row-\(dream.id)", in: animationNamespace)
+                        dreamCard(dream, index: index)
                     }
+                    .buttonStyle(.plain)
+                    .matchedGeometryEffect(id: "card-\(dream.id)", in: animationNamespace)
                     .contextMenu {
                         contextMenu(for: dream)
                     } preview: {
                         DreamDetailPreview(dream: dream)
                     }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            viewModel.deleteDream(id: dream.id)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+                    .onDrag {
+                        draggingDream = dream
+                        return NSItemProvider(object: dream.id.uuidString as NSString)
                     }
-                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                        Button {
-                            viewModel.toggleDream(id: dream.id)
-                        } label: {
-                            Label(
-                                dream.isCompleted ? "Undo" : "Complete",
-                                systemImage: dream.isCompleted ? "arrow.uturn.backward" : "checkmark"
-                            )
-                        }
-                        .tint(dream.isCompleted ? .orange : .green)
-                    }
-                }
-                .onMove { source, dest in
-                    viewModel.moveDream(from: source, to: dest, horizon: activeHorizon)
-                }
-            } header: {
-                HStack {
-                    Text("\(filteredDreams.count) dream\(filteredDreams.count == 1 ? "" : "s")")
-                    Spacer()
-                    if completedCount > 0 {
-                        Text("\(completedCount) done")
-                            .foregroundColor(.secondary)
-                    }
+                    .onDrop(
+                        of: [.text],
+                        delegate: DreamDropDelegate(
+                            dream: dream,
+                            dreams: filteredDreams,
+                            activeHorizon: activeHorizon,
+                            viewModel: viewModel
+                        )
+                    )
                 }
             }
+            .padding(.bottom, 100)
         }
-        .listStyle(.insetGrouped)
-        .environment(\.editMode, .constant(filteredDreams.count > 1 ? .active : .inactive))
+        .refreshable {
+            await refreshCanvas()
+        }
+        .scrollIndicators(.hidden)
+    }
+
+    // Individual dream card
+    private func dreamCard(_ dream: Dream, index: Int) -> some View {
+        let color = horizonColor(dream.horizon)
+        let isEven = index % 2 == 0
+
+        return HStack(spacing: 0) {
+            // Left color bar
+            RoundedRectangle(cornerRadius: 3)
+                .fill(
+                    LinearGradient(
+                        colors: [color, color.opacity(0.6)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .frame(width: 5)
+                .padding(.vertical, 12)
+
+            // Card content
+            HStack(spacing: 14) {
+                // Status icon
+                ZStack {
+                    Circle()
+                        .fill(dream.isCompleted ? Color.green : Color(.systemGray5))
+                        .frame(width: 38, height: 38)
+
+                    if dream.isCompleted {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                    } else {
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 12))
+                            .foregroundColor(color.opacity(0.6))
+                    }
+                }
+                .symbolEffect(.bounce, value: dream.isCompleted)
+
+                // Text
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(dream.title)
+                        .font(.system(.body, design: .rounded, weight: .semibold))
+                        .foregroundColor(dream.isCompleted ? .secondary : .primary)
+                        .strikethrough(dream.isCompleted)
+                        .lineLimit(2)
+
+                    if !dream.notes.isEmpty {
+                        Text(dream.notes)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                    }
+
+                    // Horizon chip
+                    HStack(spacing: 4) {
+                        Circle()
+                            .fill(color)
+                            .frame(width: 5, height: 5)
+                        Text(dream.horizon.shortLabel)
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(color)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(
+                        Capsule()
+                            .fill(color.opacity(0.1))
+                    )
+                }
+
+                Spacer()
+
+                // Completion toggle button
+                VStack(spacing: 6) {
+                    if dream.isCompleted {
+                        Image(systemName: "flag.checkered")
+                            .font(.caption2)
+                            .foregroundColor(.green.opacity(0.6))
+                    }
+
+                    Button {
+                        let generator = UIImpactFeedbackGenerator(style: .light)
+                        generator.impactOccurred()
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                            viewModel.toggleDream(id: dream.id)
+                        }
+                    } label: {
+                        Image(systemName: dream.isCompleted ? "arrow.uturn.backward.circle.fill" : "checkmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundStyle(dream.isCompleted ? .orange : color)
+                            .symbolRenderingMode(.hierarchical)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 14)
+            .padding(.horizontal, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(color.opacity(0.15), lineWidth: 1)
+            )
+        }
+        .padding(.horizontal, 16)
+        // Slight alternating offset for flowing feel
+        .padding(.leading, isEven ? 0 : 8)
+        .padding(.trailing, isEven ? 8 : 0)
+        .background(
+            RoundedRectangle(cornerRadius: 18)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 3)
+        )
+        // Completed golden sheen
+        .overlay(
+            Group {
+                if dream.isCompleted {
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    Color.yellow.opacity(0.15),
+                                    Color.orange.opacity(0.08),
+                                    Color.clear
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 18)
+                                .stroke(Color.yellow.opacity(0.3), lineWidth: 1)
+                        )
+                }
+            }
+        )
+        .scaleEffect(draggingDream?.id == dream.id ? 1.03 : 1.0)
+        .animation(.spring(response: 0.35, dampingFraction: 0.7), value: draggingDream?.id)
+    }
+
+    private func refreshCanvas() async {
+        showConfetti = true
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        try? await Task.sleep(nanoseconds: 1_800_000_000)
+        withAnimation(.easeOut(duration: 0.5)) {
+            showConfetti = false
+        }
     }
 
     // MARK: - Context Menu
@@ -277,23 +456,36 @@ struct DreamsView: View {
     private var emptyState: some View {
         VStack(spacing: 20) {
             Spacer()
-            Image(systemName: "sparkles")
-                .font(.system(size: 48, weight: .thin))
-                .foregroundColor(.blue.opacity(0.4))
-                .symbolEffect(.bounce, value: activeHorizon)
+            ZStack {
+                Circle()
+                    .fill(horizonColor(activeHorizon).opacity(0.08))
+                    .frame(width: 100, height: 100)
+
+                Image(systemName: "sparkles")
+                    .font(.system(size: 42, weight: .thin))
+                    .foregroundColor(horizonColor(activeHorizon).opacity(0.5))
+                    .symbolEffect(.bounce, value: activeHorizon)
+            }
             Text("No dreams for \(activeHorizon.shortLabel)")
-                .font(.headline)
-                .foregroundColor(.secondary)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
             Text("What do you want to achieve\nin the next \(activeHorizon.rawValue.lowercased())?")
                 .font(.subheadline)
-                .foregroundColor(.secondary.opacity(0.6))
+                .foregroundColor(.secondary.opacity(0.8))
                 .multilineTextAlignment(.center)
             Button { showAddSheet = true } label: {
-                Label("Add Your First Dream", systemImage: "plus")
+                Label("Plant a Dream", systemImage: "plus.circle.fill")
                     .font(.callout)
-                    .fontWeight(.medium)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(
+                        Capsule()
+                            .fill(horizonColor(activeHorizon))
+                    )
             }
-            .buttonStyle(.bordered)
             .padding(.top, 8)
             Spacer()
         }
@@ -314,16 +506,9 @@ struct DreamsView: View {
                 .frame(width: 52, height: 52)
                 .background(
                     Circle()
-                        .fill(.ultraThinMaterial)
-                        .environment(\.colorScheme, .light)
+                        .fill(horizonColor(activeHorizon))
                 )
-                .overlay(
-                    Circle()
-                        .fill(Color.blue)
-                        .opacity(0.85)
-                )
-                .clipShape(Circle())
-                .shadow(color: .black.opacity(0.12), radius: 8, y: 4)
+                .shadow(color: horizonColor(activeHorizon).opacity(0.4), radius: 12, y: 4)
         }
     }
 
@@ -356,8 +541,8 @@ struct DreamsView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 14)
                                 .fill(newDreamText.trimmingCharacters(in: .whitespaces).isEmpty
-                                      ? Color.blue.opacity(0.3)
-                                      : Color.blue)
+                                      ? horizonColor(activeHorizon).opacity(0.3)
+                                      : horizonColor(activeHorizon))
                         )
                 }
                 .disabled(newDreamText.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -413,7 +598,7 @@ struct DreamsView: View {
                             viewModel.storeManager.isPro ? "DreamTracker Pro" : "DreamTracker Free",
                             systemImage: viewModel.storeManager.isPro ? "star.fill" : "star"
                         )
-                        .foregroundColor(viewModel.storeManager.isPro ? .blue : .secondary)
+                        .foregroundColor(viewModel.storeManager.isPro ? horizonColor(activeHorizon) : .secondary)
                         Spacer()
                         if viewModel.storeManager.isPro {
                             Text("Active")
@@ -431,7 +616,7 @@ struct DreamsView: View {
                             }
                         } label: {
                             Label("Get Pro — \(viewModel.storeManager.formattedPrice)", systemImage: "lock.open")
-                                .foregroundColor(.blue)
+                                .foregroundColor(horizonColor(activeHorizon))
                         }
                     }
                 }
@@ -492,7 +677,7 @@ struct DreamsView: View {
 
                 Image(systemName: "star.circle.fill")
                     .font(.system(size: 60))
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(horizonColor(activeHorizon))
                     .symbolRenderingMode(.hierarchical)
 
                 Text("DreamTracker Pro")
@@ -527,7 +712,7 @@ struct DreamsView: View {
                         .padding(.vertical, 14)
                         .background(
                             RoundedRectangle(cornerRadius: 14)
-                                .fill(Color.blue)
+                                .fill(horizonColor(activeHorizon))
                         )
                     }
                     .disabled(viewModel.storeManager.purchaseInProgress)
@@ -566,7 +751,7 @@ struct DreamsView: View {
         HStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.system(size: 18))
-                .foregroundStyle(.blue)
+                .foregroundStyle(horizonColor(activeHorizon))
                 .frame(width: 28)
             Text(text)
                 .font(.subheadline)
@@ -601,47 +786,89 @@ struct DreamsView: View {
     }
 }
 
-// MARK: - Dream Row
+// MARK: - Dream Drop Delegate
 
-private struct DreamRow: View {
+private struct DreamDropDelegate: DropDelegate {
     let dream: Dream
-    let onToggle: () -> Void
+    let dreams: [Dream]
+    let activeHorizon: TimeHorizon
+    let viewModel: AppViewModel
+
+    func performDrop(info: DropInfo) -> Bool {
+        return true
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let from = dreams.firstIndex(where: { $0.id != dream.id }),
+              let toIndex = dreams.firstIndex(where: { $0.id == dream.id }),
+              from != toIndex else { return }
+
+        viewModel.moveDream(from: IndexSet(integer: from), to: toIndex, horizon: activeHorizon)
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
+}
+
+// MARK: - Confetti Overlay
+
+private struct ConfettiOverlay: View {
+    @State private var particles: [ConfettiParticle] = []
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: dream.isCompleted ? "checkmark.circle.fill" : "circle")
-                .font(.system(size: 22))
-                .foregroundStyle(dream.isCompleted ? Color.green : Color.gray.opacity(0.4))
-                .symbolRenderingMode(dream.isCompleted ? .hierarchical : .monochrome)
-                .symbolEffect(.bounce, value: dream.isCompleted)
-
-            VStack(alignment: .leading, spacing: 3) {
-                Text(dream.title)
-                    .font(.body)
-                    .foregroundColor(dream.isCompleted ? .secondary : .primary)
-                    .strikethrough(dream.isCompleted)
-                    .lineLimit(2)
-
-                if !dream.notes.isEmpty {
-                    Text(dream.notes)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
+        TimelineView(.animation) { timeline in
+            Canvas { context, size in
+                for particle in particles {
+                    let x = particle.x * size.width
+                    let y = particle.y * size.height
+                    let rect = CGRect(x: x, y: y, width: 8, height: 8)
+                    context.fill(
+                        Path(ellipseIn: rect),
+                        with: .color(particle.color.opacity(particle.opacity))
+                    )
                 }
             }
+        }
+        .onAppear {
+            generateParticles()
+        }
+    }
 
-            Spacer()
+    private func generateParticles() {
+        let colors: [Color] = [.orange, .green, .blue, .purple, .indigo, .pink, .yellow, .mint]
+        particles = (0..<60).map { _ in
+            ConfettiParticle(
+                x: CGFloat.random(in: 0...1),
+                y: CGFloat.random(in: -0.2...0),
+                color: colors.randomElement()!,
+                opacity: CGFloat.random(in: 0.5...1.0),
+                speed: CGFloat.random(in: 0.3...0.7),
+                wobble: CGFloat.random(in: -0.02...0.02)
+            )
+        }
 
-            if dream.isCompleted {
-                Image(systemName: "flag.checkered")
-                    .font(.caption2)
-                    .foregroundColor(.green.opacity(0.5))
+        withAnimation(.linear(duration: 2.0)) {
+            for i in particles.indices {
+                particles[i].y += 1.2
+                particles[i].x += particles[i].wobble
+                particles[i].opacity = 0
             }
         }
-        .padding(.vertical, 4)
-        .contentShape(Rectangle())
-        .onTapGesture { onToggle() }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+            particles = []
+        }
     }
+}
+
+private struct ConfettiParticle {
+    var x: CGFloat
+    var y: CGFloat
+    let color: Color
+    var opacity: CGFloat
+    let speed: CGFloat
+    let wobble: CGFloat
 }
 
 // MARK: - Detail Preview (for context menu)

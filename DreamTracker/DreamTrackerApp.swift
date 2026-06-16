@@ -72,9 +72,9 @@ struct MainTabView: View {
                 }
                 .tag(0)
 
-            JournalView()
+            CalendarView()
                 .tabItem {
-                    Label("Journal", systemImage: selectedTab == 1 ? "book.closed.fill" : "book.closed")
+                    Label("Calendar", systemImage: selectedTab == 1 ? "calendar.circle.fill" : "calendar")
                 }
                 .tag(1)
         }
@@ -202,6 +202,22 @@ class AppViewModel: ObservableObject {
         dreams.removeAll { $0.id == id }
         Task {
             try? await dreamStore.deleteDream(id: id)
+        }
+    }
+
+    func decomposeDream(parentID: UUID, subDreams: [(title: String, horizon: TimeHorizon)]) {
+        var orderByHorizon: [TimeHorizon: Int] = [:]
+        for horizon in TimeHorizon.allCases {
+            orderByHorizon[horizon] = dreams.filter { $0.horizon == horizon }.count
+        }
+        for sub in subDreams {
+            let order = orderByHorizon[sub.horizon] ?? 0
+            var dream = Dream(title: sub.title, horizon: sub.horizon, order: order, parentID: parentID)
+            dreams.append(dream)
+            orderByHorizon[sub.horizon] = order + 1
+            Task {
+                try? await dreamStore.saveDream(dream)
+            }
         }
     }
 

@@ -33,6 +33,7 @@ public struct Dream: Identifiable, Codable, Equatable {
     public var completedAt: Date?
     public var order: Int
     public var createdAt: Date
+    public var parentID: UUID?
 
     public init(
         id: UUID = UUID(),
@@ -42,7 +43,8 @@ public struct Dream: Identifiable, Codable, Equatable {
         isCompleted: Bool = false,
         completedAt: Date? = nil,
         order: Int = 0,
-        createdAt: Date = Date()
+        createdAt: Date = Date(),
+        parentID: UUID? = nil
     ) {
         self.id = id
         self.title = title
@@ -52,6 +54,7 @@ public struct Dream: Identifiable, Codable, Equatable {
         self.completedAt = completedAt
         self.order = order
         self.createdAt = createdAt
+        self.parentID = parentID
     }
 }
 
