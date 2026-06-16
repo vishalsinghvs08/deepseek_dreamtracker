@@ -28,6 +28,12 @@ final class StoreManager: ObservableObject {
         }
     }
 
+    func teardown() {
+        updateListenerTask?.cancel()
+        updateListenerTask = nil
+        didSetup = false
+    }
+
     deinit {
         updateListenerTask?.cancel()
     }
@@ -117,9 +123,10 @@ final class StoreManager: ObservableObject {
     // MARK: - Transaction Listener
 
     private func listenForTransactions() -> Task<Void, Error> {
-        Task.detached {
+        Task.detached { [weak self] in
             for await result in Transaction.updates {
                 guard case .verified(let transaction) = result else { continue }
+                guard let self else { break }
                 if transaction.productID == self.productID {
                     await MainActor.run { self.isPro = true }
                 }

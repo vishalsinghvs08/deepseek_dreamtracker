@@ -17,18 +17,12 @@
 		00000000000000000000010A /* SecureStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000020A /* SecureStoreTests.swift */; };
 		00000000000000000000010B /* BiometricAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000020B /* BiometricAuthenticatorTests.swift */; };
 		00000000000000000000010C /* DreamTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000212 /* DreamTrackerUITests.swift */; };
-		00000000000000000000010D /* PinnedSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000214 /* PinnedSessionDelegate.swift */; };
-		00000000000000000000010E /* AppAttestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000215 /* AppAttestManager.swift */; };
-		00000000000000000000010F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000216 /* APIClient.swift */; };
-		000000000000000000000110 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000217 /* AuthService.swift */; };
-		000000000000000000000111 /* AppleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000218 /* AppleSignInCoordinator.swift */; };
 		000000000000000000000112 /* PinnedSessionDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000219 /* PinnedSessionDelegateTests.swift */; };
 		000000000000000000000113 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* AuthServiceTests.swift */; };
 		000000000000000000000114 /* cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021B /* cert.der */; };
 		000000000000000000000115 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021C /* APIClientTests.swift */; };
 		000000000000000000000152 /* SecureStoreSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000252 /* SecureStoreSyncTests.swift */; };
 		000000000000000000000153 /* DreamSyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000253 /* DreamSyncServiceTests.swift */; };
-		00000000000000000000018F /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000028F /* APIRoute.swift */; };
 		35694ECF65BE40F39FE58D65 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
 		4FEA2FB75F894A89B2D0A01D /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
 		B001000000000000000002 /* DreamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000001 /* DreamModels.swift */; };
@@ -79,18 +73,12 @@
 		000000000000000000000211 /* DreamTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000212 /* DreamTrackerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamTrackerUITests.swift; path = DreamTrackerUITests/DreamTrackerUITests.swift; sourceTree = "<group>"; };
 		000000000000000000000213 /* DreamTrackerUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DreamTrackerUITests-Info.plist"; path = DreamTrackerUITests/Info.plist; sourceTree = "<group>"; };
-		000000000000000000000214 /* PinnedSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinnedSessionDelegate.swift; path = DreamTracker/Network/PinnedSessionDelegate.swift; sourceTree = "<group>"; };
-		000000000000000000000215 /* AppAttestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppAttestManager.swift; path = DreamTracker/Network/AppAttestManager.swift; sourceTree = "<group>"; };
-		000000000000000000000216 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = DreamTracker/Network/APIClient.swift; sourceTree = "<group>"; };
-		000000000000000000000217 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = DreamTracker/Service/AuthService.swift; sourceTree = "<group>"; };
-		000000000000000000000218 /* AppleSignInCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleSignInCoordinator.swift; path = DreamTracker/Service/AppleSignInCoordinator.swift; sourceTree = "<group>"; };
 		000000000000000000000219 /* PinnedSessionDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinnedSessionDelegateTests.swift; path = DreamTrackerTests/PinnedSessionDelegateTests.swift; sourceTree = "<group>"; };
 		00000000000000000000021A /* AuthServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthServiceTests.swift; path = DreamTrackerTests/AuthServiceTests.swift; sourceTree = "<group>"; };
 		00000000000000000000021B /* cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = cert.der; path = DreamTrackerTests/cert.der; sourceTree = "<group>"; };
 		00000000000000000000021C /* APIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClientTests.swift; path = DreamTrackerTests/APIClientTests.swift; sourceTree = "<group>"; };
 		000000000000000000000252 /* SecureStoreSyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureStoreSyncTests.swift; path = DreamTrackerTests/SecureStoreSyncTests.swift; sourceTree = "<group>"; };
 		000000000000000000000253 /* DreamSyncServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamSyncServiceTests.swift; path = DreamTrackerTests/DreamSyncServiceTests.swift; sourceTree = "<group>"; };
-		00000000000000000000028F /* APIRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIRoute.swift; path = DreamTracker/Network/APIRoute.swift; sourceTree = "<group>"; };
 		26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/JournalView.swift; sourceTree = SOURCE_ROOT; };
 		CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/CalendarView.swift; sourceTree = SOURCE_ROOT; };
 		8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/LockView.swift; sourceTree = SOURCE_ROOT; };
@@ -229,10 +217,6 @@
 		000000000000000000000409 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000214 /* PinnedSessionDelegate.swift */,
-				000000000000000000000215 /* AppAttestManager.swift */,
-				000000000000000000000216 /* APIClient.swift */,
-				00000000000000000000028F /* APIRoute.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -240,8 +224,6 @@
 		00000000000000000000040A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000217 /* AuthService.swift */,
-				000000000000000000000218 /* AppleSignInCoordinator.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -405,12 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00000000000000000000010D /* PinnedSessionDelegate.swift in Sources */,
-				00000000000000000000010E /* AppAttestManager.swift in Sources */,
-				00000000000000000000010F /* APIClient.swift in Sources */,
-				00000000000000000000018F /* APIRoute.swift in Sources */,
-				000000000000000000000110 /* AuthService.swift in Sources */,
-				000000000000000000000111 /* AppleSignInCoordinator.swift in Sources */,
 				000000000000000000000101 /* DreamTrackerApp.swift in Sources */,
 				000000000000000000000102 /* Secrets.swift in Sources */,
 				000000000000000000000103 /* KeychainManager.swift in Sources */,

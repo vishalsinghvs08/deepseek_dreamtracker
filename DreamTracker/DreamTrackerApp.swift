@@ -149,6 +149,7 @@ class AppViewModel: ObservableObject {
     }
 
     func lockApp() {
+        storeManager.teardown()
         isUnlocked = false
         dreams = []
         journalEntries = []
@@ -212,7 +213,7 @@ class AppViewModel: ObservableObject {
         }
         for sub in subDreams {
             let order = orderByHorizon[sub.horizon] ?? 0
-            var dream = Dream(title: sub.title, horizon: sub.horizon, order: order, parentID: parentID)
+            let dream = Dream(title: sub.title, horizon: sub.horizon, order: order, parentID: parentID)
             dreams.append(dream)
             orderByHorizon[sub.horizon] = order + 1
             Task {
