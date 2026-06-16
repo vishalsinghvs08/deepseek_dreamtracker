@@ -23,8 +23,10 @@
 		000000000000000000000115 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021C /* APIClientTests.swift */; };
 		000000000000000000000152 /* SecureStoreSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000252 /* SecureStoreSyncTests.swift */; };
 		000000000000000000000153 /* DreamSyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000253 /* DreamSyncServiceTests.swift */; };
-		35694ECF65BE40F39FE58D65 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
-		4FEA2FB75F894A89B2D0A01D /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
+		35694ECF65BE40F39FE58D65 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* LockView.swift */; };
+		4FEA2FB75F894A89B2D0A01D /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */; };
+		A4DC55FCD71FA8A65B23E829 /* DecomposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2F5ADD39C9A7CFEA21DF7 /* DecomposeView.swift */; };
+		ACF8117A8952B67692A6B592 /* OrbitDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6128F7497A0F2F478BA4C /* OrbitDial.swift */; };
 		B001000000000000000002 /* DreamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000001 /* DreamModels.swift */; };
 		B001000000000000000004 /* DreamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000003 /* DreamStore.swift */; };
 		B001000000000000000006 /* DreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000005 /* DreamsView.swift */; };
@@ -32,10 +34,10 @@
 		B003000000000000000002 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003000000000000000001 /* StoreManager.swift */; };
 		B004000000000000000002 /* DeviceKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004000000000000000001 /* DeviceKeychain.swift */; };
 		B004000000000000000004 /* JailbreakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004000000000000000003 /* JailbreakDetector.swift */; };
-		DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
-		DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
-		CAL001000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */; };
-		CAL002000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */; };
+		CAL001000000000000002 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* CalendarView.swift */; };
+		CAL002000000000000002 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAL001000000000000001 /* CalendarView.swift */; };
+		DC6B90702FDFFB7D00F3E164 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* LockView.swift */; };
+		DC6B90712FDFFB7D00F3E164 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,9 +81,9 @@
 		00000000000000000000021C /* APIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClientTests.swift; path = DreamTrackerTests/APIClientTests.swift; sourceTree = "<group>"; };
 		000000000000000000000252 /* SecureStoreSyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureStoreSyncTests.swift; path = DreamTrackerTests/SecureStoreSyncTests.swift; sourceTree = "<group>"; };
 		000000000000000000000253 /* DreamSyncServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamSyncServiceTests.swift; path = DreamTrackerTests/DreamSyncServiceTests.swift; sourceTree = "<group>"; };
-		26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/JournalView.swift; sourceTree = SOURCE_ROOT; };
-		CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/CalendarView.swift; sourceTree = SOURCE_ROOT; };
-		8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/LockView.swift; sourceTree = SOURCE_ROOT; };
+		26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/JournalView.swift; sourceTree = SOURCE_ROOT; };
+		5CC6128F7497A0F2F478BA4C /* OrbitDial.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OrbitDial.swift; path = DreamTracker/Views/OrbitDial.swift; sourceTree = "<group>"; };
+		8C811EE1EE5B4B659E416D5A /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/LockView.swift; sourceTree = SOURCE_ROOT; };
 		B001000000000000000001 /* DreamModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamModels.swift; path = DreamTracker/Model/DreamModels.swift; sourceTree = "<group>"; };
 		B001000000000000000003 /* DreamStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamStore.swift; path = DreamTracker/Model/DreamStore.swift; sourceTree = "<group>"; };
 		B001000000000000000005 /* DreamsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamsView.swift; path = DreamTracker/Views/DreamsView.swift; sourceTree = "<group>"; };
@@ -90,6 +92,8 @@
 		B004000000000000000001 /* DeviceKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceKeychain.swift; path = DreamTracker/Security/DeviceKeychain.swift; sourceTree = "<group>"; };
 		B004000000000000000003 /* JailbreakDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JailbreakDetector.swift; path = DreamTracker/Security/JailbreakDetector.swift; sourceTree = "<group>"; };
 		B005000000000000000001 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DreamTracker/Configuration/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BBE2F5ADD39C9A7CFEA21DF7 /* DecomposeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DecomposeView.swift; path = DreamTracker/Views/DecomposeView.swift; sourceTree = "<group>"; };
+		CAL001000000000000001 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/CalendarView.swift; sourceTree = SOURCE_ROOT; };
 		W001000000000000000001 /* DreamTrackerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamTrackerWidget.swift; sourceTree = "<group>"; };
 		W001000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,11 +235,13 @@
 		A00100000000000000000B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */,
-				26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */,
-				CAL001000000000000001 /* DreamTracker/Views/CalendarView.swift */,
+				8C811EE1EE5B4B659E416D5A /* LockView.swift */,
+				26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */,
+				CAL001000000000000001 /* CalendarView.swift */,
 				B001000000000000000005 /* DreamsView.swift */,
 				B002000000000000000001 /* DreamDetailView.swift */,
+				5CC6128F7497A0F2F478BA4C /* OrbitDial.swift */,
+				BBE2F5ADD39C9A7CFEA21DF7 /* DecomposeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -392,8 +398,8 @@
 				000000000000000000000103 /* KeychainManager.swift in Sources */,
 				000000000000000000000105 /* BiometricAuthenticator.swift in Sources */,
 				000000000000000000000106 /* SecurityError.swift in Sources */,
-				35694ECF65BE40F39FE58D65 /* DreamTracker/Views/LockView.swift in Sources */,
-				4FEA2FB75F894A89B2D0A01D /* DreamTracker/Views/JournalView.swift in Sources */,
+				35694ECF65BE40F39FE58D65 /* LockView.swift in Sources */,
+				4FEA2FB75F894A89B2D0A01D /* JournalView.swift in Sources */,
 				B001000000000000000002 /* DreamModels.swift in Sources */,
 				B001000000000000000004 /* DreamStore.swift in Sources */,
 				B001000000000000000006 /* DreamsView.swift in Sources */,
@@ -401,7 +407,9 @@
 				B003000000000000000002 /* StoreManager.swift in Sources */,
 				B004000000000000000002 /* DeviceKeychain.swift in Sources */,
 				B004000000000000000004 /* JailbreakDetector.swift in Sources */,
-				CAL001000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */,
+				CAL001000000000000002 /* CalendarView.swift in Sources */,
+				ACF8117A8952B67692A6B592 /* OrbitDial.swift in Sources */,
+				A4DC55FCD71FA8A65B23E829 /* DecomposeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,9 +433,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00000000000000000000010C /* DreamTrackerUITests.swift in Sources */,
-				DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */,
-				DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */,
-				CAL002000000000000002 /* DreamTracker/Views/CalendarView.swift in Sources */,
+				DC6B90702FDFFB7D00F3E164 /* LockView.swift in Sources */,
+				DC6B90712FDFFB7D00F3E164 /* JournalView.swift in Sources */,
+				CAL002000000000000002 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

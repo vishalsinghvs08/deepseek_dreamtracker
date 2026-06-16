@@ -1,17 +1,6 @@
 import SwiftUI
 import TipKit
 
-// MARK: - Horizon Color Helper
-private func horizonColor(_ horizon: TimeHorizon) -> Color {
-    switch horizon {
-    case .sixMonths: return .orange
-    case .oneYear:   return .green
-    case .threeYears:return .blue
-    case .fiveYears: return .purple
-    case .tenYears:  return .indigo
-    }
-}
-
 // MARK: - Dreams View
 
 struct DreamsView: View {
@@ -23,6 +12,7 @@ struct DreamsView: View {
     @State private var showProUpgrade = false
     @State private var showConfetti = false
     @State private var draggingDream: Dream?
+    @State private var dreamToDecompose: Dream?
     @FocusState private var isFocused: Bool
 
     private let maxFreePerHorizon = 3
@@ -30,6 +20,16 @@ struct DreamsView: View {
     @Namespace private var animationNamespace
 
     private let horizons = TimeHorizon.allCases
+
+    // Pre-generated star particles for cosmic background
+    @State private var stars: [StarParticle] = (0..<200).map { _ in
+        StarParticle(
+            x: CGFloat.random(in: 0...1),
+            y: CGFloat.random(in: 0...1),
+            size: CGFloat.random(in: 0.5...2.5),
+            opacity: CGFloat.random(in: 0.15...0.7)
+        )
+    }
 
     private var filteredDreams: [Dream] {
         viewModel.dreams
@@ -52,18 +52,9 @@ struct DreamsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Canvas background — warm, dreamy, tinted to active horizon
-                LinearGradient(
-                    colors: [
-                        horizonColor(activeHorizon).opacity(0.06),
-                        Color(.systemGroupedBackground),
-                        Color(.systemGroupedBackground)
-                    ],
-                    startPoint: .top,
-                    endPoint: .center
-                )
-                .ignoresSafeArea()
-                .animation(.easeInOut(duration: 0.5), value: activeHorizon)
+                // Cosmic space background
+                cosmicBackground
+                    .ignoresSafeArea()
 
                 VStack(spacing: 0) {
                     progressHeader
@@ -71,8 +62,8 @@ struct DreamsView: View {
                         .padding(.top, 8)
                         .padding(.bottom, 6)
 
-                    horizonPicker
-                        .padding(.horizontal, 12)
+                    // OrbitDial replacing horizon pills — centered at top
+                    OrbitDial(activeHorizon: $activeHorizon)
                         .padding(.bottom, 12)
 
                     if filteredDreams.isEmpty {
@@ -89,7 +80,7 @@ struct DreamsView: View {
                         .transition(.opacity)
                 }
 
-                // Floating add button
+                // Floating add button — frosted glass
                 addButton
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                     .padding(.trailing, 20)
@@ -100,14 +91,49 @@ struct DreamsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { showSettings = true } label: {
                         Image(systemName: "gearshape")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.7))
                     }
                 }
             }
             .sheet(isPresented: $showSettings) { settingsSheet }
             .sheet(isPresented: $showAddSheet) { addDreamSheet }
             .sheet(isPresented: $showProUpgrade) { proUpgradeSheet }
+            .sheet(item: $dreamToDecompose) { dream in
+                DecomposeView(parentDream: dream)
+            }
         }
+    }
+
+    // MARK: - Cosmic Background
+
+    private var cosmicBackground: some View {
+        ZStack {
+            // Deep cosmic gradient — navy → deep purple → black
+            LinearGradient(
+                colors: [
+                    Color(red: 0.04, green: 0.04, blue: 0.18),
+                    Color(red: 0.08, green: 0.04, blue: 0.22),
+                    Color(red: 0.03, green: 0.02, blue: 0.12),
+                    Color.black
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+
+            // Star particles
+            Canvas { context, size in
+                for star in stars {
+                    let x = star.x * size.width
+                    let y = star.y * size.height
+                    let rect = CGRect(x: x, y: y, width: star.size, height: star.size)
+                    context.fill(
+                        Path(ellipseIn: rect),
+                        with: .color(.white.opacity(star.opacity))
+                    )
+                }
+            }
+        }
+        .animation(.easeInOut(duration: 0.5), value: activeHorizon)
     }
 
     // MARK: - Progress Header
@@ -116,91 +142,34 @@ struct DreamsView: View {
         HStack(spacing: 12) {
             ZStack {
                 Circle()
-                    .stroke(Color(.systemGray5), lineWidth: 3)
+                    .stroke(Color.white.opacity(0.2), lineWidth: 3)
                     .frame(width: 32, height: 32)
 
                 Circle()
                     .trim(from: 0, to: totalDreams > 0 ? CGFloat(totalCompleted) / CGFloat(totalDreams) : 0)
-                    .stroke(horizonColor(activeHorizon), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                    .stroke(planetaryColor(activeHorizon), style: StrokeStyle(lineWidth: 3, lineCap: .round))
                     .frame(width: 32, height: 32)
                     .rotationEffect(.degrees(-90))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: totalCompleted)
             }
+            .background(
+                Circle()
+                    .fill(.ultraThinMaterial)
+                    .frame(width: 42, height: 42)
+            )
 
             VStack(alignment: .leading, spacing: 1) {
                 Text("\(totalCompleted) of \(totalDreams) dreams achieved")
                     .font(.caption)
                     .fontWeight(.medium)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.white.opacity(0.7))
             }
 
             Spacer()
         }
     }
 
-    // MARK: - Horizon Pills (per-horizon colored!)
-
-    private var horizonPicker: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                ForEach(horizons) { horizon in
-                    let count = viewModel.dreams.filter { $0.horizon == horizon }.count
-                    let done = viewModel.dreams.filter { $0.horizon == horizon && $0.isCompleted }.count
-                    let isActive = activeHorizon == horizon
-                    let color = horizonColor(horizon)
-
-                    Button {
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
-                        withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
-                            activeHorizon = horizon
-                        }
-                    } label: {
-                        HStack(spacing: 6) {
-                            Circle()
-                                .fill(isActive ? .white : color)
-                                .frame(width: 7, height: 7)
-
-                            Text(horizon.shortLabel)
-                                .font(.system(size: 14, weight: isActive ? .semibold : .medium))
-                                .foregroundColor(isActive ? .white : .primary)
-
-                            if count > 0 {
-                                Text("\(done)/\(count)")
-                                    .font(.system(size: 11, weight: .medium))
-                                    .foregroundColor(isActive ? .white.opacity(0.8) : .secondary)
-                            }
-
-                            if isActive {
-                                Image(systemName: "chevron.down")
-                                    .font(.system(size: 8, weight: .bold))
-                                    .foregroundColor(.white.opacity(0.7))
-                            }
-                        }
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 10)
-                        .background(
-                            Capsule()
-                                .fill(isActive ? color : Color(.systemGray6))
-                        )
-                        .overlay(
-                            Capsule()
-                                .stroke(isActive ? Color.clear : Color(.systemGray4), lineWidth: 0.5)
-                        )
-                        .shadow(color: isActive ? color.opacity(0.3) : .clear, radius: 4, y: 2)
-                    }
-                    .scrollTransition(.interactive, axis: .horizontal) { content, phase in
-                        content
-                            .scaleEffect(phase.isIdentity ? 1 : 0.92)
-                            .opacity(phase.isIdentity ? 1 : 0.7)
-                    }
-                }
-            }
-            .padding(.horizontal, 4)
-        }
-    }
-
-    // MARK: - Dream Canvas (flowing card layout)
+    // MARK: - Dream Canvas
 
     private var dreamCanvas: some View {
         ScrollView {
@@ -210,20 +179,20 @@ struct DreamsView: View {
                     Text("\(filteredDreams.count) dream\(filteredDreams.count == 1 ? "" : "s")")
                         .font(.caption)
                         .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.white.opacity(0.6))
                         .textCase(.uppercase)
                     Spacer()
                     if completedCount > 0 {
                         Text("\(completedCount) ✦ done")
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundColor(horizonColor(activeHorizon))
+                            .foregroundColor(planetaryColor(activeHorizon))
                     }
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 4)
 
-                // Flowing cards
+                // Glass cards
                 ForEach(Array(filteredDreams.enumerated()), id: \.element.id) { index, dream in
                     NavigationLink {
                         DreamDetailView(dream: dream, animationNamespace: animationNamespace)
@@ -260,22 +229,22 @@ struct DreamsView: View {
         .scrollIndicators(.hidden)
     }
 
-    // Individual dream card
+    // Individual dream card — glassmorphism
     private func dreamCard(_ dream: Dream, index: Int) -> some View {
-        let color = horizonColor(dream.horizon)
+        let color = planetaryColor(dream.horizon)
         let isEven = index % 2 == 0
 
         return HStack(spacing: 0) {
-            // Left color bar
-            RoundedRectangle(cornerRadius: 3)
+            // Left color accent bar
+            RoundedRectangle(cornerRadius: 2)
                 .fill(
                     LinearGradient(
-                        colors: [color, color.opacity(0.6)],
+                        colors: [color, color.opacity(0.5)],
                         startPoint: .top,
                         endPoint: .bottom
                     )
                 )
-                .frame(width: 5)
+                .frame(width: 4)
                 .padding(.vertical, 12)
 
             // Card content
@@ -283,7 +252,9 @@ struct DreamsView: View {
                 // Status icon
                 ZStack {
                     Circle()
-                        .fill(dream.isCompleted ? Color.green : Color(.systemGray5))
+                        .fill(dream.isCompleted
+                            ? Color.green.opacity(0.3)
+                            : Color.white.opacity(0.1))
                         .frame(width: 38, height: 38)
 
                     if dream.isCompleted {
@@ -293,7 +264,7 @@ struct DreamsView: View {
                     } else {
                         Image(systemName: "sparkles")
                             .font(.system(size: 12))
-                            .foregroundColor(color.opacity(0.6))
+                            .foregroundColor(color.opacity(0.8))
                     }
                 }
                 .symbolEffect(.bounce, value: dream.isCompleted)
@@ -302,14 +273,14 @@ struct DreamsView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(dream.title)
                         .font(.system(.body, design: .rounded, weight: .semibold))
-                        .foregroundColor(dream.isCompleted ? .secondary : .primary)
+                        .foregroundColor(dream.isCompleted ? .white.opacity(0.5) : .white)
                         .strikethrough(dream.isCompleted)
                         .lineLimit(2)
 
                     if !dream.notes.isEmpty {
                         Text(dream.notes)
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.5))
                             .lineLimit(1)
                     }
 
@@ -326,7 +297,7 @@ struct DreamsView: View {
                     .padding(.vertical, 3)
                     .background(
                         Capsule()
-                            .fill(color.opacity(0.1))
+                            .fill(color.opacity(0.15))
                     )
                 }
 
@@ -359,23 +330,23 @@ struct DreamsView: View {
             .padding(.horizontal, 16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemBackground))
+                    .fill(.ultraThinMaterial)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(color.opacity(0.15), lineWidth: 1)
+                    .stroke(.white.opacity(0.15), lineWidth: 0.5)
             )
         }
         .padding(.horizontal, 16)
-        // Slight alternating offset for flowing feel
+        // Alternating offset for flowing feel
         .padding(.leading, isEven ? 0 : 8)
         .padding(.trailing, isEven ? 8 : 0)
         .background(
             RoundedRectangle(cornerRadius: 18)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 3)
+                .fill(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.2), radius: 12, x: 0, y: 6)
         )
-        // Completed golden sheen
+        // Completed golden shimmer overlay
         .overlay(
             Group {
                 if dream.isCompleted {
@@ -442,6 +413,15 @@ struct DreamsView: View {
             }
         }
 
+        // Decompose option for 5Y/10Y dreams
+        if dream.horizon == .fiveYears || dream.horizon == .tenYears {
+            Button {
+                dreamToDecompose = dream
+            } label: {
+                Label("Decompose", systemImage: "square.split.2x2")
+            }
+        }
+
         Divider()
 
         Button(role: .destructive) {
@@ -458,21 +438,21 @@ struct DreamsView: View {
             Spacer()
             ZStack {
                 Circle()
-                    .fill(horizonColor(activeHorizon).opacity(0.08))
+                    .fill(planetaryColor(activeHorizon).opacity(0.12))
                     .frame(width: 100, height: 100)
 
-                Image(systemName: "sparkles")
+                Image(systemName: planetaryIcon(activeHorizon))
                     .font(.system(size: 42, weight: .thin))
-                    .foregroundColor(horizonColor(activeHorizon).opacity(0.5))
+                    .foregroundColor(planetaryColor(activeHorizon).opacity(0.6))
                     .symbolEffect(.bounce, value: activeHorizon)
             }
             Text("No dreams for \(activeHorizon.shortLabel)")
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
             Text("What do you want to achieve\nin the next \(activeHorizon.rawValue.lowercased())?")
                 .font(.subheadline)
-                .foregroundColor(.secondary.opacity(0.8))
+                .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
             Button { showAddSheet = true } label: {
                 Label("Plant a Dream", systemImage: "plus.circle.fill")
@@ -483,7 +463,7 @@ struct DreamsView: View {
                     .padding(.vertical, 12)
                     .background(
                         Capsule()
-                            .fill(horizonColor(activeHorizon))
+                            .fill(planetaryColor(activeHorizon))
                     )
             }
             .padding(.top, 8)
@@ -492,7 +472,7 @@ struct DreamsView: View {
         .padding(.horizontal, 32)
     }
 
-    // MARK: - Add Button
+    // MARK: - Add Button (FAB — frosted glass)
 
     private var addButton: some View {
         Button {
@@ -503,12 +483,16 @@ struct DreamsView: View {
             Image(systemName: "plus")
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundStyle(.white)
-                .frame(width: 52, height: 52)
+                .frame(width: 56, height: 56)
                 .background(
                     Circle()
-                        .fill(horizonColor(activeHorizon))
+                        .fill(.ultraThinMaterial)
                 )
-                .shadow(color: horizonColor(activeHorizon).opacity(0.4), radius: 12, y: 4)
+                .overlay(
+                    Circle()
+                        .stroke(.white.opacity(0.2), lineWidth: 1)
+                )
+                .shadow(color: .black.opacity(0.4), radius: 16, y: 8)
         }
     }
 
@@ -541,8 +525,8 @@ struct DreamsView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 14)
                                 .fill(newDreamText.trimmingCharacters(in: .whitespaces).isEmpty
-                                      ? horizonColor(activeHorizon).opacity(0.3)
-                                      : horizonColor(activeHorizon))
+                                      ? planetaryColor(activeHorizon).opacity(0.3)
+                                      : planetaryColor(activeHorizon))
                         )
                 }
                 .disabled(newDreamText.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -598,7 +582,7 @@ struct DreamsView: View {
                             viewModel.storeManager.isPro ? "DreamTracker Pro" : "DreamTracker Free",
                             systemImage: viewModel.storeManager.isPro ? "star.fill" : "star"
                         )
-                        .foregroundColor(viewModel.storeManager.isPro ? horizonColor(activeHorizon) : .secondary)
+                        .foregroundColor(viewModel.storeManager.isPro ? planetaryColor(activeHorizon) : .secondary)
                         Spacer()
                         if viewModel.storeManager.isPro {
                             Text("Active")
@@ -616,7 +600,7 @@ struct DreamsView: View {
                             }
                         } label: {
                             Label("Get Pro — \(viewModel.storeManager.formattedPrice)", systemImage: "lock.open")
-                                .foregroundColor(horizonColor(activeHorizon))
+                                .foregroundColor(planetaryColor(activeHorizon))
                         }
                     }
                 }
@@ -677,7 +661,7 @@ struct DreamsView: View {
 
                 Image(systemName: "star.circle.fill")
                     .font(.system(size: 60))
-                    .foregroundStyle(horizonColor(activeHorizon))
+                    .foregroundStyle(planetaryColor(activeHorizon))
                     .symbolRenderingMode(.hierarchical)
 
                 Text("DreamTracker Pro")
@@ -712,7 +696,7 @@ struct DreamsView: View {
                         .padding(.vertical, 14)
                         .background(
                             RoundedRectangle(cornerRadius: 14)
-                                .fill(horizonColor(activeHorizon))
+                                .fill(planetaryColor(activeHorizon))
                         )
                     }
                     .disabled(viewModel.storeManager.purchaseInProgress)
@@ -751,7 +735,7 @@ struct DreamsView: View {
         HStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.system(size: 18))
-                .foregroundStyle(horizonColor(activeHorizon))
+                .foregroundStyle(planetaryColor(activeHorizon))
                 .frame(width: 28)
             Text(text)
                 .font(.subheadline)
@@ -784,6 +768,15 @@ struct DreamsView: View {
             UIApplication.shared.open(url)
         }
     }
+}
+
+// MARK: - Star Particle (for cosmic background)
+
+private struct StarParticle {
+    let x: CGFloat
+    let y: CGFloat
+    let size: CGFloat
+    let opacity: CGFloat
 }
 
 // MARK: - Dream Drop Delegate
