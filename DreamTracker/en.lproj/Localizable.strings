@@ -1,0 +1,85 @@
+/* Dreams Tab */
+"Dreams" = "Dreams";
+"dreams" = "dreams";
+"dream" = "dream";
+"done" = "done";
+"achieved" = "achieved";
+"Add Your First Dream" = "Add Your First Dream";
+"New Dream" = "New Dream";
+"Your dream..." = "Your dream...";
+"Save Dream" = "Save Dream";
+"Cancel" = "Cancel";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Mark Complete" = "Mark Complete";
+"Mark Incomplete" = "Mark Incomplete";
+"Move To…" = "Move To…";
+"Undo" = "Undo";
+"Complete" = "Complete";
+"No dreams for %@" = "No dreams for %@";
+"What do you want to achieve\nin the next %@?" = "What do you want to achieve\nin the next %@?";
+"%d of %d dreams achieved" = "%d of %d dreams achieved";
+
+/* Time Horizons */
+"6 Months" = "6 Months";
+"1 Year" = "1 Year";
+"3 Years" = "3 Years";
+"5 Years" = "5 Years";
+"10 Years" = "10 Years";
+
+/* Journal Tab */
+"Journal" = "Journal";
+"Your Journal" = "Your Journal";
+"Capture thoughts about your progress,\nsetbacks, and wins along the way." = "Capture thoughts about your progress,\nsetbacks, and wins along the way.";
+"Write First Entry" = "Write First Entry";
+"New Entry" = "New Entry";
+"Save" = "Save";
+
+/* Settings */
+"Settings" = "Settings";
+"About" = "About";
+"Version" = "Version";
+"Data" = "Data";
+"Export Dreams" = "Export Dreams";
+"Delete All Data" = "Delete All Data";
+"Rate DreamTracker" = "Rate DreamTracker";
+"Privacy Policy" = "Privacy Policy";
+"Done" = "Done";
+
+/* Pro */
+"DreamTracker Pro" = "DreamTracker Pro";
+"DreamTracker Free" = "DreamTracker Free";
+"Active" = "Active";
+"Get Pro — %@" = "Get Pro — %@";
+"One-time purchase. No subscription. Forever." = "One-time purchase. No subscription. Forever.";
+"Restore Purchases" = "Restore Purchases";
+"Purchase Error" = "Purchase Error";
+
+/* Lock Screen */
+"Unlock" = "Unlock";
+"Protected by Face ID" = "Protected by Face ID";
+"What do you want your life to look like?" = "What do you want your life to look like?";
+
+/* Dream Detail */
+"Notes" = "Notes";
+"Tap Edit to add notes about this dream..." = "Tap Edit to add notes about this dream...";
+"Created %@" = "Created %@";
+"Achieved %@" = "Achieved %@";
+"Delete Dream" = "Delete Dream";
+"will be permanently removed." = "will be permanently removed.";
+"Editing" = "Editing";
+
+/* Widget */
+"Dream Progress" = "Dream Progress";
+"See your focus dream and overall progress at a glance." = "See your focus dream and overall progress at a glance.";
+"Dreams Completed" = "Dreams Completed";
+"Quick progress ring." = "Quick progress ring.";
+
+/* Security */
+"Security Warning" = "Security Warning";
+"This device appears to be jailbroken. For your security, DreamTracker cannot run on compromised devices." = "This device appears to be jailbroken. For your security, DreamTracker cannot run on compromised devices.";
+
+/* Face ID */
+"Unlock DreamTracker." = "Unlock DreamTracker.";
+"Not authorized." = "Not authorized.";
+"Passcode failed." = "Passcode failed.";

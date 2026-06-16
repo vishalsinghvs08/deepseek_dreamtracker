@@ -1,0 +1,7 @@
+//
+// Config.xcconfig
+// DreamTracker config settings
+//
+
+SLASH = /
+BACKEND_URL = https:${SLASH}/api.dreamtracker.com

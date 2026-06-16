@@ -1,0 +1,36 @@
+# Xcode
+build_derived/
+build_derived_worker/
+*.xcuserdata
+*.xcbkptlist
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Build products
+build/
+*.app
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+Pods/
+
+# SwiftPM
+.build/
+
+# Other
+.DS_Store
+*.swp
+*~

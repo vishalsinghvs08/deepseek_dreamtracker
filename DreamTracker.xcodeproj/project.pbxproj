@@ -1,0 +1,764 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000101 /* DreamTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000201 /* DreamTrackerApp.swift */; };
+		000000000000000000000102 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000202 /* Secrets.swift */; };
+		000000000000000000000103 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000203 /* KeychainManager.swift */; };
+		000000000000000000000105 /* BiometricAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000205 /* BiometricAuthenticator.swift */; };
+		000000000000000000000106 /* SecurityError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000206 /* SecurityError.swift */; };
+		000000000000000000000108 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000208 /* PrivacyInfo.xcprivacy */; };
+		000000000000000000000109 /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000209 /* KeychainManagerTests.swift */; };
+		00000000000000000000010A /* SecureStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000020A /* SecureStoreTests.swift */; };
+		00000000000000000000010B /* BiometricAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000020B /* BiometricAuthenticatorTests.swift */; };
+		00000000000000000000010C /* DreamTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000212 /* DreamTrackerUITests.swift */; };
+		00000000000000000000010D /* PinnedSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000214 /* PinnedSessionDelegate.swift */; };
+		00000000000000000000010E /* AppAttestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000215 /* AppAttestManager.swift */; };
+		00000000000000000000010F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000216 /* APIClient.swift */; };
+		000000000000000000000110 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000217 /* AuthService.swift */; };
+		000000000000000000000111 /* AppleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000218 /* AppleSignInCoordinator.swift */; };
+		000000000000000000000112 /* PinnedSessionDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000219 /* PinnedSessionDelegateTests.swift */; };
+		000000000000000000000113 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* AuthServiceTests.swift */; };
+		000000000000000000000114 /* cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021B /* cert.der */; };
+		000000000000000000000115 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021C /* APIClientTests.swift */; };
+		000000000000000000000152 /* SecureStoreSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000252 /* SecureStoreSyncTests.swift */; };
+		000000000000000000000153 /* DreamSyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000253 /* DreamSyncServiceTests.swift */; };
+		00000000000000000000018F /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000028F /* APIRoute.swift */; };
+		35694ECF65BE40F39FE58D65 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
+		4FEA2FB75F894A89B2D0A01D /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
+		B001000000000000000002 /* DreamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000001 /* DreamModels.swift */; };
+		B001000000000000000004 /* DreamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000003 /* DreamStore.swift */; };
+		B001000000000000000006 /* DreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001000000000000000005 /* DreamsView.swift */; };
+		B002000000000000000002 /* DreamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B002000000000000000001 /* DreamDetailView.swift */; };
+		B003000000000000000002 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003000000000000000001 /* StoreManager.swift */; };
+		B004000000000000000002 /* DeviceKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004000000000000000001 /* DeviceKeychain.swift */; };
+		B004000000000000000004 /* JailbreakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004000000000000000003 /* JailbreakDetector.swift */; };
+		DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */; };
+		DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000000501 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000003;
+			remoteInfo = DreamTracker;
+		};
+		000000000000000000000502 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000003;
+			remoteInfo = DreamTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		000000000000000000000201 /* DreamTrackerApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamTrackerApp.swift; path = DreamTracker/DreamTrackerApp.swift; sourceTree = "<group>"; };
+		000000000000000000000202 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = DreamTracker/Configuration/Secrets.swift; sourceTree = "<group>"; };
+		000000000000000000000203 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = DreamTracker/Security/KeychainManager.swift; sourceTree = "<group>"; };
+		000000000000000000000205 /* BiometricAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BiometricAuthenticator.swift; path = DreamTracker/Security/BiometricAuthenticator.swift; sourceTree = "<group>"; };
+		000000000000000000000206 /* SecurityError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecurityError.swift; path = DreamTracker/Security/SecurityError.swift; sourceTree = "<group>"; };
+		000000000000000000000208 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = file.xml; name = PrivacyInfo.xcprivacy; path = DreamTracker/Configuration/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		000000000000000000000209 /* KeychainManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainManagerTests.swift; path = DreamTrackerTests/KeychainManagerTests.swift; sourceTree = "<group>"; };
+		00000000000000000000020A /* SecureStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureStoreTests.swift; path = DreamTrackerTests/SecureStoreTests.swift; sourceTree = "<group>"; };
+		00000000000000000000020B /* BiometricAuthenticatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BiometricAuthenticatorTests.swift; path = DreamTrackerTests/BiometricAuthenticatorTests.swift; sourceTree = "<group>"; };
+		00000000000000000000020C /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = DreamTracker/Configuration/Config.xcconfig; sourceTree = "<group>"; };
+		00000000000000000000020D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = DreamTracker/Configuration/Info.plist; sourceTree = "<group>"; };
+		00000000000000000000020E /* DreamTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00000000000000000000020F /* DreamTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000210 /* DreamTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DreamTrackerTests-Info.plist"; path = DreamTrackerTests/Info.plist; sourceTree = "<group>"; };
+		000000000000000000000211 /* DreamTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DreamTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000212 /* DreamTrackerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamTrackerUITests.swift; path = DreamTrackerUITests/DreamTrackerUITests.swift; sourceTree = "<group>"; };
+		000000000000000000000213 /* DreamTrackerUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DreamTrackerUITests-Info.plist"; path = DreamTrackerUITests/Info.plist; sourceTree = "<group>"; };
+		000000000000000000000214 /* PinnedSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinnedSessionDelegate.swift; path = DreamTracker/Network/PinnedSessionDelegate.swift; sourceTree = "<group>"; };
+		000000000000000000000215 /* AppAttestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppAttestManager.swift; path = DreamTracker/Network/AppAttestManager.swift; sourceTree = "<group>"; };
+		000000000000000000000216 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = DreamTracker/Network/APIClient.swift; sourceTree = "<group>"; };
+		000000000000000000000217 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = DreamTracker/Service/AuthService.swift; sourceTree = "<group>"; };
+		000000000000000000000218 /* AppleSignInCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleSignInCoordinator.swift; path = DreamTracker/Service/AppleSignInCoordinator.swift; sourceTree = "<group>"; };
+		000000000000000000000219 /* PinnedSessionDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinnedSessionDelegateTests.swift; path = DreamTrackerTests/PinnedSessionDelegateTests.swift; sourceTree = "<group>"; };
+		00000000000000000000021A /* AuthServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthServiceTests.swift; path = DreamTrackerTests/AuthServiceTests.swift; sourceTree = "<group>"; };
+		00000000000000000000021B /* cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = cert.der; path = DreamTrackerTests/cert.der; sourceTree = "<group>"; };
+		00000000000000000000021C /* APIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIClientTests.swift; path = DreamTrackerTests/APIClientTests.swift; sourceTree = "<group>"; };
+		000000000000000000000252 /* SecureStoreSyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureStoreSyncTests.swift; path = DreamTrackerTests/SecureStoreSyncTests.swift; sourceTree = "<group>"; };
+		000000000000000000000253 /* DreamSyncServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamSyncServiceTests.swift; path = DreamTrackerTests/DreamSyncServiceTests.swift; sourceTree = "<group>"; };
+		00000000000000000000028F /* APIRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIRoute.swift; path = DreamTracker/Network/APIRoute.swift; sourceTree = "<group>"; };
+		26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/JournalView.swift; sourceTree = SOURCE_ROOT; };
+		8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTracker/Views/LockView.swift; sourceTree = SOURCE_ROOT; };
+		B001000000000000000001 /* DreamModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamModels.swift; path = DreamTracker/Model/DreamModels.swift; sourceTree = "<group>"; };
+		B001000000000000000003 /* DreamStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamStore.swift; path = DreamTracker/Model/DreamStore.swift; sourceTree = "<group>"; };
+		B001000000000000000005 /* DreamsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamsView.swift; path = DreamTracker/Views/DreamsView.swift; sourceTree = "<group>"; };
+		B002000000000000000001 /* DreamDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamDetailView.swift; path = DreamTracker/Views/DreamDetailView.swift; sourceTree = "<group>"; };
+		B003000000000000000001 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreManager.swift; path = DreamTracker/Store/StoreManager.swift; sourceTree = "<group>"; };
+		B004000000000000000001 /* DeviceKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceKeychain.swift; path = DreamTracker/Security/DeviceKeychain.swift; sourceTree = "<group>"; };
+		B004000000000000000003 /* JailbreakDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JailbreakDetector.swift; path = DreamTracker/Security/JailbreakDetector.swift; sourceTree = "<group>"; };
+		B005000000000000000001 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DreamTracker/Configuration/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		W001000000000000000001 /* DreamTrackerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamTrackerWidget.swift; sourceTree = "<group>"; };
+		W001000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000000301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000302 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000401 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000408 /* DreamTrackerUITests */,
+				000000000000000000000402 /* DreamTracker */,
+				000000000000000000000403 /* DreamTrackerTests */,
+				W00100000000000000000A /* DreamTrackerWidget */,
+				000000000000000000000404 /* Products */,
+				DC6B90722FDFFB7D00F3E164 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000402 /* DreamTracker */ = {
+			isa = PBXGroup;
+			children = (
+				A00100000000000000000B /* Views */,
+				000000000000000000000409 /* Network */,
+				00000000000000000000040A /* Service */,
+				000000000000000000000201 /* DreamTrackerApp.swift */,
+				000000000000000000000405 /* Configuration */,
+				000000000000000000000406 /* Security */,
+				000000000000000000000407 /* Model */,
+			);
+			name = DreamTracker;
+			sourceTree = "<group>";
+		};
+		000000000000000000000403 /* DreamTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000252 /* SecureStoreSyncTests.swift */,
+				000000000000000000000253 /* DreamSyncServiceTests.swift */,
+				000000000000000000000219 /* PinnedSessionDelegateTests.swift */,
+				00000000000000000000021A /* AuthServiceTests.swift */,
+				00000000000000000000021B /* cert.der */,
+				00000000000000000000021C /* APIClientTests.swift */,
+				000000000000000000000209 /* KeychainManagerTests.swift */,
+				00000000000000000000020A /* SecureStoreTests.swift */,
+				00000000000000000000020B /* BiometricAuthenticatorTests.swift */,
+				000000000000000000000210 /* DreamTrackerTests-Info.plist */,
+			);
+			name = DreamTrackerTests;
+			sourceTree = "<group>";
+		};
+		000000000000000000000404 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000211 /* DreamTrackerUITests.xctest */,
+				00000000000000000000020E /* DreamTracker.app */,
+				00000000000000000000020F /* DreamTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		000000000000000000000405 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000020C /* Config.xcconfig */,
+				000000000000000000000202 /* Secrets.swift */,
+				00000000000000000000020D /* Info.plist */,
+				000000000000000000000208 /* PrivacyInfo.xcprivacy */,
+				B005000000000000000001 /* LaunchScreen.storyboard */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		000000000000000000000406 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000203 /* KeychainManager.swift */,
+				000000000000000000000205 /* BiometricAuthenticator.swift */,
+				000000000000000000000206 /* SecurityError.swift */,
+				B004000000000000000001 /* DeviceKeychain.swift */,
+				B004000000000000000003 /* JailbreakDetector.swift */,
+			);
+			name = Security;
+			sourceTree = "<group>";
+		};
+		000000000000000000000407 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B001000000000000000001 /* DreamModels.swift */,
+				B001000000000000000003 /* DreamStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		000000000000000000000408 /* DreamTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000212 /* DreamTrackerUITests.swift */,
+				000000000000000000000213 /* DreamTrackerUITests-Info.plist */,
+			);
+			name = DreamTrackerUITests;
+			sourceTree = "<group>";
+		};
+		000000000000000000000409 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000214 /* PinnedSessionDelegate.swift */,
+				000000000000000000000215 /* AppAttestManager.swift */,
+				000000000000000000000216 /* APIClient.swift */,
+				00000000000000000000028F /* APIRoute.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		00000000000000000000040A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000217 /* AuthService.swift */,
+				000000000000000000000218 /* AppleSignInCoordinator.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		A00100000000000000000B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C811EE1EE5B4B659E416D5A /* DreamTracker/Views/LockView.swift */,
+				26CF6E0B1B3A40DEA1CF8805 /* DreamTracker/Views/JournalView.swift */,
+				B001000000000000000005 /* DreamsView.swift */,
+				B002000000000000000001 /* DreamDetailView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DC6B90722FDFFB7D00F3E164 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B003000000000000000001 /* StoreManager.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		W00100000000000000000A /* DreamTrackerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				W001000000000000000001 /* DreamTrackerWidget.swift */,
+				W001000000000000000002 /* Info.plist */,
+			);
+			path = DreamTrackerWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000000003 /* DreamTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000801 /* Build configuration list for PBXNativeTarget "DreamTracker" */;
+			buildPhases = (
+				000000000000000000000701 /* Sources */,
+				000000000000000000000301 /* Frameworks */,
+				000000000000000000000702 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DreamTracker;
+			productName = DreamTracker;
+			productReference = 00000000000000000000020E /* DreamTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		000000000000000000000008 /* DreamTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000802 /* Build configuration list for PBXNativeTarget "DreamTrackerTests" */;
+			buildPhases = (
+				000000000000000000000703 /* Sources */,
+				000000000000000000000302 /* Frameworks */,
+				000000000000000000000704 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000601 /* PBXTargetDependency */,
+			);
+			name = DreamTrackerTests;
+			productName = DreamTrackerTests;
+			productReference = 00000000000000000000020F /* DreamTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00000000000000000000000D /* DreamTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000804 /* Build configuration list for PBXNativeTarget "DreamTrackerUITests" */;
+			buildPhases = (
+				000000000000000000000705 /* Sources */,
+				000000000000000000000303 /* Frameworks */,
+				000000000000000000000706 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000602 /* PBXTargetDependency */,
+			);
+			name = DreamTrackerUITests;
+			productName = DreamTrackerUITests;
+			productReference = 000000000000000000000211 /* DreamTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					000000000000000000000003 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					000000000000000000000008 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 000000000000000000000003;
+					};
+					00000000000000000000000D = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 000000000000000000000003;
+					};
+				};
+			};
+			buildConfigurationList = 000000000000000000000803 /* Build configuration list for PBXProject "DreamTracker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000401;
+			productRefGroup = 000000000000000000000404 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00000000000000000000000D /* DreamTrackerUITests */,
+				000000000000000000000003 /* DreamTracker */,
+				000000000000000000000008 /* DreamTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		000000000000000000000702 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000108 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000704 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000114 /* cert.der in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000706 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		000000000000000000000701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000000000000000000010D /* PinnedSessionDelegate.swift in Sources */,
+				00000000000000000000010E /* AppAttestManager.swift in Sources */,
+				00000000000000000000010F /* APIClient.swift in Sources */,
+				00000000000000000000018F /* APIRoute.swift in Sources */,
+				000000000000000000000110 /* AuthService.swift in Sources */,
+				000000000000000000000111 /* AppleSignInCoordinator.swift in Sources */,
+				000000000000000000000101 /* DreamTrackerApp.swift in Sources */,
+				000000000000000000000102 /* Secrets.swift in Sources */,
+				000000000000000000000103 /* KeychainManager.swift in Sources */,
+				000000000000000000000105 /* BiometricAuthenticator.swift in Sources */,
+				000000000000000000000106 /* SecurityError.swift in Sources */,
+				35694ECF65BE40F39FE58D65 /* DreamTracker/Views/LockView.swift in Sources */,
+				4FEA2FB75F894A89B2D0A01D /* DreamTracker/Views/JournalView.swift in Sources */,
+				B001000000000000000002 /* DreamModels.swift in Sources */,
+				B001000000000000000004 /* DreamStore.swift in Sources */,
+				B001000000000000000006 /* DreamsView.swift in Sources */,
+				B002000000000000000002 /* DreamDetailView.swift in Sources */,
+				B003000000000000000002 /* StoreManager.swift in Sources */,
+				B004000000000000000002 /* DeviceKeychain.swift in Sources */,
+				B004000000000000000004 /* JailbreakDetector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000703 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000152 /* SecureStoreSyncTests.swift in Sources */,
+				000000000000000000000153 /* DreamSyncServiceTests.swift in Sources */,
+				000000000000000000000112 /* PinnedSessionDelegateTests.swift in Sources */,
+				000000000000000000000113 /* AuthServiceTests.swift in Sources */,
+				000000000000000000000115 /* APIClientTests.swift in Sources */,
+				000000000000000000000109 /* KeychainManagerTests.swift in Sources */,
+				00000000000000000000010A /* SecureStoreTests.swift in Sources */,
+				00000000000000000000010B /* BiometricAuthenticatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000705 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000000000000000000010C /* DreamTrackerUITests.swift in Sources */,
+				DC6B90702FDFFB7D00F3E164 /* DreamTracker/Views/LockView.swift in Sources */,
+				DC6B90712FDFFB7D00F3E164 /* DreamTracker/Views/JournalView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000000601 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000003 /* DreamTracker */;
+			targetProxy = 000000000000000000000501 /* PBXContainerItemProxy */;
+		};
+		000000000000000000000602 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000003 /* DreamTracker */;
+			targetProxy = 000000000000000000000502 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		000000000000000000000901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_WRITE_BACK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUICKTIME_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		000000000000000000000902 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_WRITE_BACK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUICKTIME_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		000000000000000000000903 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00000000000000000000020C /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DreamTracker/DreamTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSETS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTracker/Configuration/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		000000000000000000000904 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00000000000000000000020C /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DreamTracker/DreamTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSETS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTracker/Configuration/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		000000000000000000000905 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app.DreamTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DreamTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DreamTracker";
+			};
+			name = Debug;
+		};
+		000000000000000000000906 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app.DreamTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DreamTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DreamTracker";
+			};
+			name = Release;
+		};
+		000000000000000000000907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app.DreamTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = DreamTracker;
+			};
+			name = Debug;
+		};
+		000000000000000000000908 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = DreamTrackerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamtracker.app.DreamTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = DreamTracker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		000000000000000000000801 /* Build configuration list for PBXNativeTarget "DreamTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000903 /* Debug */,
+				000000000000000000000904 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000802 /* Build configuration list for PBXNativeTarget "DreamTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000905 /* Debug */,
+				000000000000000000000906 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000803 /* Build configuration list for PBXProject "DreamTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000901 /* Debug */,
+				000000000000000000000902 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000804 /* Build configuration list for PBXNativeTarget "DreamTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000907 /* Debug */,
+				000000000000000000000908 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
