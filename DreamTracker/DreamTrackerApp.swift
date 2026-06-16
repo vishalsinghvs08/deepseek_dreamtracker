@@ -48,14 +48,20 @@ struct RootView: View {
     var body: some View {
         Group {
             if viewModel.isUnlocked {
-                MainTabView()
-                    .transition(.opacity)
+                if viewModel.showHomeScreen {
+                    HomeView()
+                        .transition(.opacity)
+                } else {
+                    MainTabView()
+                        .transition(.opacity)
+                }
             } else {
                 LockView()
                     .transition(.opacity)
             }
         }
-        .animation(.easeInOut(duration: 0.3), value: viewModel.isUnlocked)
+        .animation(.easeInOut(duration: 0.5), value: viewModel.isUnlocked)
+        .animation(.easeInOut(duration: 0.5), value: viewModel.showHomeScreen)
     }
 }
 
@@ -87,6 +93,7 @@ struct MainTabView: View {
 class AppViewModel: ObservableObject {
     @Published var isUnlocked = false
     @Published var errorMessage: String?
+    @Published var showHomeScreen = true
 
     // Store
     @Published var storeManager = StoreManager()

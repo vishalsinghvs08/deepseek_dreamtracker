@@ -12,67 +12,107 @@ struct OrbitDial: View {
     @State private var rotation: Double = 0
     @State private var dragStartAngle: Double = 0
     @State private var lastFeedbackIndex: Int = 1 // Default to 1Y
+    @State private var isPulsing: Bool = false
 
     private let dialSize: CGFloat = 220
     private let segmentAngle: Double = 360.0 / 5.0 // 72° per horizon
 
     var body: some View {
         ZStack {
-            // Outer ring — frosted glass
-            Circle()
-                .fill(.ultraThinMaterial)
-                .frame(width: dialSize, height: dialSize)
-                .shadow(color: .black.opacity(0.08), radius: 20, y: 10)
+            // ── Rotating outer ring & tick marks ──
+            Group {
+                // Outer ring — frosted glass with angular gradient trim
+                Circle()
+                    .fill(.ultraThinMaterial)
+                    .frame(width: dialSize, height: dialSize)
+                    .shadow(color: .black.opacity(0.08), radius: 20, y: 10)
 
-            // Inner ring — subtle gradient
-            Circle()
-                .stroke(
-                    AngularGradient(
-                        colors: [.white.opacity(0.4), .white.opacity(0.05), .white.opacity(0.4)],
-                        center: .center
-                    ),
-                    lineWidth: 1.5
-                )
-                .frame(width: dialSize - 4, height: dialSize - 4)
+                // Angular gradient ring using planetaryColor + white accents
+                Circle()
+                    .stroke(
+                        AngularGradient(
+                            colors: [
+                                planetaryColor(activeHorizon).opacity(0.9),
+                                .white.opacity(0.7),
+                                planetaryColor(activeHorizon).opacity(0.6),
+                                .white.opacity(0.7),
+                                planetaryColor(activeHorizon).opacity(0.9)
+                            ],
+                            center: .center
+                        ),
+                        lineWidth: 2.5
+                    )
+                    .frame(width: dialSize - 4, height: dialSize - 4)
+                    .blur(radius: 1)
 
-            // Tick marks for each horizon
+                // Inner accent ring
+                Circle()
+                    .stroke(
+                        AngularGradient(
+                            colors: [.white.opacity(0.5), .white.opacity(0.05), .white.opacity(0.5)],
+                            center: .center
+                        ),
+                        lineWidth: 1.5
+                    )
+                    .frame(width: dialSize - 4, height: dialSize - 4)
+
+                // Tick marks — rotate with dial
+                ForEach(Array(horizons.enumerated()), id: \.element.id) { index, horizon in
+                    let angle = segmentAngle * Double(index) - 90 // Start from top
+                    let isActive = horizon == activeHorizon
+
+                    Capsule()
+                        .fill(isActive ? .white : .white.opacity(0.3))
+                        .frame(width: isActive ? 3 : 1.5, height: isActive ? 18 : 12)
+                        .offset(y: -(dialSize / 2 - 28))
+                        .rotationEffect(.degrees(angle))
+                }
+            }
+            .rotationEffect(.degrees(rotation))
+            .animation(.spring(response: 0.5, dampingFraction: 0.7), value: rotation)
+            .animation(.spring(response: 0.5, dampingFraction: 0.7), value: activeHorizon)
+
+            // ── Fixed upright labels ──
             ForEach(Array(horizons.enumerated()), id: \.element.id) { index, horizon in
-                let angle = segmentAngle * Double(index) - 90 // Start from top
-                let isActive = horizon == activeHorizon
+                let angle = segmentAngle * Double(index) - 90
                 let rad = Angle.degrees(angle).radians
+                let labelRadius = dialSize / 2 - 52
+                let x = labelRadius * cos(rad)
+                let y = labelRadius * sin(rad)
+                let isActive = horizon == activeHorizon
 
-                // Tick line
-                Capsule()
-                    .fill(isActive ? planetaryColor(horizon) : .gray.opacity(0.3))
-                    .frame(width: isActive ? 3 : 1.5, height: isActive ? 16 : 10)
-                    .offset(y: -(dialSize / 2 - 22))
-                    .rotationEffect(.degrees(angle))
-                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: activeHorizon)
-
-                // Label
                 Text(horizon.shortLabel)
                     .font(.system(size: isActive ? 13 : 10, weight: isActive ? .bold : .medium))
-                    .foregroundColor(isActive ? planetaryColor(horizon) : .secondary)
-                    .rotationEffect(.degrees(angle))
-                    .offset(y: -(dialSize / 2 - 44))
-                    .rotationEffect(.degrees(-angle)) // Counter-rotate to keep text upright
-                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: activeHorizon)
+                    .foregroundColor(isActive ? .white : .white.opacity(0.5))
+                    .position(x: dialSize / 2 + x, y: dialSize / 2 + y)
+                    .animation(.spring(response: 0.5, dampingFraction: 0.7), value: activeHorizon)
             }
 
-            // Center — active horizon display with glassmorphism
-            VStack(spacing: 4) {
-                Image(systemName: planetaryIcon(activeHorizon))
-                    .font(.system(size: 28, weight: .thin))
-                    .foregroundStyle(planetaryColor(activeHorizon))
-                    .symbolEffect(.bounce, value: activeHorizon)
+            // ── Center display ──
+            VStack(spacing: 6) {
+                ZStack {
+                    // Pulsing glow ring behind icon
+                    Circle()
+                        .stroke(planetaryColor(activeHorizon).opacity(0.6), lineWidth: 2)
+                        .frame(width: 56, height: 56)
+                        .scaleEffect(isPulsing ? 1.25 : 1.0)
+                        .opacity(isPulsing ? 0.3 : 0.7)
+                        .animation(
+                            .easeInOut(duration: 1.8).repeatForever(autoreverses: true),
+                            value: isPulsing
+                        )
 
-                Text(activeHorizon.shortLabel)
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(.primary)
+                    // Large SF Symbol
+                    Image(systemName: planetaryIcon(activeHorizon))
+                        .font(.system(size: 40, weight: .thin))
+                        .foregroundStyle(.white)
+                        .symbolRenderingMode(.hierarchical)
+                        .symbolEffect(.bounce, value: activeHorizon)
+                }
 
                 Text(planetaryName(activeHorizon))
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.white)
             }
             .frame(width: 120, height: 120)
             .background(.ultraThinMaterial)
@@ -80,7 +120,6 @@ struct OrbitDial: View {
             .shadow(color: .black.opacity(0.05), radius: 8, y: 4)
         }
         .frame(width: dialSize, height: dialSize)
-        .rotationEffect(.degrees(rotation))
         .gesture(
             DragGesture()
                 .onChanged { value in
@@ -119,7 +158,7 @@ struct OrbitDial: View {
 
                     let snapped = segmentAngle * Double(index)
 
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.65)) {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                         rotation = snapped
                         activeHorizon = horizons[index]
                     }
@@ -128,6 +167,9 @@ struct OrbitDial: View {
                     gen.impactOccurred()
                 }
         )
+        .onAppear {
+            isPulsing = true
+        }
     }
 }
 
