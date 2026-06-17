@@ -130,7 +130,7 @@ enum LifeSimulator {
     /// Projects when you'll achieve your dreams at current pace
     static func project(dreams: [Dream]) -> LifeProjection {
         let completed = dreams.filter(\.isCompleted)
-        _ = dreams.filter { !$0.isCompleted }
+        let active = dreams.filter { !$0.isCompleted }
         let currentYear = Calendar.current.component(.year, from: Date())
 
         // Calculate average days to complete a dream
