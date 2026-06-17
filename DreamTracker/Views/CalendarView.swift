@@ -19,6 +19,19 @@ struct CalendarView: View {
                         summarySection
                             .opacity(showCards ? 1 : 0)
                             .offset(y: showCards ? 0 : 20)
+
+                        // Dream Coach insights
+                        coachInsightsSection
+                            .padding(.horizontal, 16)
+                            .padding(.top, 16)
+                            .opacity(showCards ? 1 : 0)
+
+                        // Life Simulator projection
+                        lifeSimulatorSection
+                            .padding(.horizontal, 16)
+                            .padding(.top, 12)
+                            .opacity(showCards ? 1 : 0)
+
                         heatmapSection
                             .opacity(showCards ? 1 : 0)
                             .offset(y: showCards ? 0 : 16)
@@ -68,6 +81,25 @@ struct CalendarView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Coach Insights
+
+    private var coachInsightsSection: some View {
+        let insights = DreamCoach.analyze(dreams: viewModel.dreams, entries: viewModel.journalEntries)
+        return Group {
+            if !insights.isEmpty {
+                VStack(spacing: 8) {
+                    ForEach(insights) { insight in
+                        CoachInsightCard(insight: insight)
+                    }
+                }
+            }
+        }
+    }
+
+    private var lifeSimulatorSection: some View {
+        LifeSimulatorCard(projection: LifeSimulator.project(dreams: viewModel.dreams))
     }
 
     // MARK: - Summary Section

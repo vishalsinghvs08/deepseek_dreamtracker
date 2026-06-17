@@ -40,6 +40,9 @@
 		DC6B90712FDFFB7D00F3E164 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */; };
 		B006000000000000000002 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006000000000000000001 /* HomeView.swift */; };
 		B007000000000000000002 /* CosmicNebula.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007000000000000000001 /* CosmicNebula.swift */; };
+		B008AAAA00000000000002 /* ParallelLives.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000001 /* ParallelLives.swift */; };
+		B008AAAA00000000000004 /* DreamCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000003 /* DreamCoach.swift */; };
+		B008AAAA00000000000006 /* DreamCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000005 /* DreamCards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,9 @@
 		W001000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B006000000000000000001 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = DreamTracker/Views/HomeView.swift; sourceTree = "<group>"; };
 		B007000000000000000001 /* CosmicNebula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CosmicNebula.swift; path = DreamTracker/Views/CosmicNebula.swift; sourceTree = "<group>"; };
+		B008AAAA00000000000001 /* ParallelLives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallelLives.swift; path = DreamTracker/Model/ParallelLives.swift; sourceTree = "<group>"; };
+		B008AAAA00000000000003 /* DreamCoach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamCoach.swift; path = DreamTracker/Model/DreamCoach.swift; sourceTree = "<group>"; };
+		B008AAAA00000000000005 /* DreamCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamCards.swift; path = DreamTracker/Views/DreamCards.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,8 @@
 			children = (
 				B001000000000000000001 /* DreamModels.swift */,
 				B001000000000000000003 /* DreamStore.swift */,
+				B008AAAA00000000000001 /* ParallelLives.swift */,
+				B008AAAA00000000000003 /* DreamCoach.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -416,6 +424,9 @@
 				A4DC55FCD71FA8A65B23E829 /* DecomposeView.swift in Sources */,
 							B006000000000000000002 /* HomeView.swift in Sources */,
 				B007000000000000000002 /* CosmicNebula.swift in Sources */,
+				B008AAAA00000000000002 /* ParallelLives.swift in Sources */,
+				B008AAAA00000000000004 /* DreamCoach.swift in Sources */,
+				B008AAAA00000000000006 /* DreamCards.swift in Sources */,
 );
 			runOnlyForDeploymentPostprocessing = 0;
 		};

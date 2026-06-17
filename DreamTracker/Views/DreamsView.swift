@@ -68,6 +68,16 @@ struct DreamsView: View {
                     if filteredDreams.isEmpty {
                         emptyState
                     } else {
+                        // Dream Pulse ring
+                        DreamPulseRing(dreams: viewModel.dreams)
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 8)
+
+                        // Parallel Lives motivation
+                        ParallelLivesCard(story: ParallelLives.random(for: activeHorizon, locale: ParallelLives.userLocale))
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 12)
+
                         dreamCanvas
                     }
                 }
