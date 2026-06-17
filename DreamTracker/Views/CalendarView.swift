@@ -151,7 +151,7 @@ struct CalendarView: View {
             HStack {
                 Text("Activity Heatmap")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                 Spacer()
                 legendView
             }
@@ -162,7 +162,7 @@ struct CalendarView: View {
                 .padding(.vertical, 12)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(.ultraThinMaterial)
+                        .fill(Color.white.opacity(0.07))
                 )
                 .padding(.horizontal, 16)
         }
@@ -190,7 +190,7 @@ struct CalendarView: View {
             ForEach(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], id: \.self) { day in
                 Text(day)
                     .font(.system(size: 8, weight: .medium))
-                    .foregroundColor(.white.opacity(0.45))
+                    .foregroundColor(Color.white.opacity(0.35))
                     .frame(maxWidth: .infinity)
             }
 
@@ -214,7 +214,7 @@ struct CalendarView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Monthly Timeline")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(Color.white)
                 .padding(.horizontal, 16)
                 .padding(.top, 20)
 
@@ -249,7 +249,7 @@ struct CalendarView: View {
                 .foregroundColor(.white.opacity(0.3))
             Text("No activity yet")
                 .font(.subheadline)
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(Color.white.opacity(0.35))
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 40)
@@ -432,22 +432,22 @@ struct StaggeredSummaryCard: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.caption)
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(Color.white.opacity(0.60))
                 Text(value)
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
             }
             Spacer()
         }
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 14)
-                .fill(.ultraThinMaterial)
+                .fill(Color.white.opacity(0.07))
         )
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(.white.opacity(0.08), lineWidth: 0.5)
+                .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
         )
         .opacity(visible ? 1 : 0)
         .offset(y: visible ? 0 : 16)
@@ -472,7 +472,7 @@ struct LegendDot: View {
                 .frame(width: 8, height: 8)
             Text(label)
                 .font(.system(size: 9))
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(Color.white.opacity(0.60))
         }
     }
 }
@@ -525,7 +525,7 @@ struct MonthTimelineCard: View {
                         Label("Dreams", systemImage: "sparkles")
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundColor(.white.opacity(0.6))
+                            .foregroundColor(Color.white.opacity(0.60))
 
                         ForEach(dreams) { dream in
                             HStack(spacing: 8) {
@@ -557,7 +557,7 @@ struct MonthTimelineCard: View {
                         Label("Journal", systemImage: "book.pages")
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundColor(.white.opacity(0.6))
+                            .foregroundColor(Color.white.opacity(0.60))
 
                         ForEach(entries.prefix(3)) { entry in
                             HStack(spacing: 8) {
@@ -566,7 +566,7 @@ struct MonthTimelineCard: View {
                                     .foregroundColor(planetaryColor(.tenYears).opacity(0.7))
                                 Text(entry.content)
                                     .font(.caption)
-                                    .foregroundColor(.white.opacity(0.7))
+                                    .foregroundColor(Color.white.opacity(0.60))
                                     .lineLimit(2)
                                 Spacer()
                             }
@@ -580,7 +580,7 @@ struct MonthTimelineCard: View {
                         if entries.count > 3 {
                             Text("+\(entries.count - 3) more entries")
                                 .font(.caption2)
-                                .foregroundColor(.white.opacity(0.5))
+                                .foregroundColor(Color.white.opacity(0.35))
                                 .padding(.leading, 20)
                         }
                     }
@@ -590,7 +590,7 @@ struct MonthTimelineCard: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
+                .fill(Color.white.opacity(0.07))
         )
         .overlay(
             RoundedRectangle(cornerRadius: 16)
@@ -607,7 +607,7 @@ struct HorizonBadge: View {
     var body: some View {
         Text(horizon.shortLabel)
             .font(.system(size: 9, weight: .bold))
-            .foregroundColor(.white)
+            .foregroundColor(Color.white)
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
             .background(

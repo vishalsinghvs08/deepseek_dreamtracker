@@ -52,7 +52,7 @@ struct DreamsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                CosmicNebula()
+                LinearGradient(colors: [Color(red: 0.04, green: 0.04, blue: 0.10), Color(red: 0.06, green: 0.05, blue: 0.16), Color(red: 0.04, green: 0.04, blue: 0.10)], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
 
                 VStack(spacing: 0) {
@@ -100,7 +100,7 @@ struct DreamsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { showSettings = true } label: {
                         Image(systemName: "gearshape")
-                            .foregroundColor(.white.opacity(0.7))
+                            .foregroundColor(Color.white.opacity(0.60))
                     }
                 }
             }
@@ -153,7 +153,7 @@ struct DreamsView: View {
             }
             .background(
                 Circle()
-                    .fill(.ultraThinMaterial)
+                    .fill(Color.white.opacity(0.07))
                     .frame(width: 42, height: 42)
             )
 
@@ -161,7 +161,7 @@ struct DreamsView: View {
                 Text("\(totalCompleted) of \(totalDreams) dreams achieved")
                     .font(.caption)
                     .fontWeight(.medium)
-                    .foregroundColor(.white.opacity(0.7))
+                    .foregroundColor(Color.white.opacity(0.60))
             }
 
             Spacer()
@@ -178,7 +178,7 @@ struct DreamsView: View {
                     Text("\(filteredDreams.count) dream\(filteredDreams.count == 1 ? "" : "s")")
                         .font(.caption)
                         .fontWeight(.semibold)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(Color.white.opacity(0.60))
                         .textCase(.uppercase)
                     Spacer()
                     if completedCount > 0 {
@@ -259,7 +259,7 @@ struct DreamsView: View {
                     if dream.isCompleted {
                         Image(systemName: "checkmark")
                             .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color.white)
                     } else {
                         Image(systemName: "sparkles")
                             .font(.system(size: 12))
@@ -279,7 +279,7 @@ struct DreamsView: View {
                     if !dream.notes.isEmpty {
                         Text(dream.notes)
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.5))
+                            .foregroundColor(Color.white.opacity(0.35))
                             .lineLimit(1)
                     }
 
@@ -437,16 +437,16 @@ struct DreamsView: View {
             Text("No dreams for \(activeHorizon.shortLabel)")
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(Color.white)
             Text("What do you want to achieve\nin the next \(activeHorizon.rawValue.lowercased())?")
                 .font(.subheadline)
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(Color.white.opacity(0.60))
                 .multilineTextAlignment(.center)
             Button { showAddSheet = true } label: {
                 Label("Plant a Dream", systemImage: "plus.circle.fill")
                     .font(.callout)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 12)
                     .background(
@@ -470,7 +470,7 @@ struct DreamsView: View {
         } label: {
             Image(systemName: "plus")
                 .font(.system(size: 20, weight: .semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.white)
                 .frame(width: 56, height: 56)
                 .cosmicSurface(level: .floating, radius: 28)
                 .shadow(color: .black.opacity(0.4), radius: 16, y: 8)
@@ -500,7 +500,7 @@ struct DreamsView: View {
                 } label: {
                     Text("Save Dream")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
                         .background(
@@ -672,7 +672,7 @@ struct DreamsView: View {
                             Text("Get Pro — \(viewModel.storeManager.formattedPrice)")
                                 .fontWeight(.semibold)
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
                         .background(

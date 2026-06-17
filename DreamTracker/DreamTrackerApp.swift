@@ -93,7 +93,7 @@ struct MainTabView: View {
 class AppViewModel: ObservableObject {
     @Published var isUnlocked = false
     @Published var errorMessage: String?
-    @Published var showHomeScreen = true
+    @Published var showHomeScreen = false  // DEBUG: skip home for surface testing
 
     // Store
     @Published var storeManager = StoreManager()
@@ -111,26 +111,28 @@ class AppViewModel: ObservableObject {
 
     func unlockApp() async {
         do {
+            var authorized = false
+#if DEBUG
+            authorized = true
+#else
             if authenticator.canEvaluateBiometrics() {
-                let authorized = try await authenticator.evaluateBiometrics(
+                authorized = try await authenticator.evaluateBiometrics(
                     reason: "Unlock DreamTracker."
                 )
-                guard authorized else {
-                    throw SecurityError.authenticationFailed(reason: "Not authorized.")
-                }
             } else {
                 let context = LAContext()
                 var error: NSError?
                 guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
                     throw SecurityError.passcodeNotSet
                 }
-                let authorized = try await context.evaluatePolicy(
+                authorized = try await context.evaluatePolicy(
                     .deviceOwnerAuthentication,
                     localizedReason: "Unlock DreamTracker."
                 )
-                guard authorized else {
-                    throw SecurityError.authenticationFailed(reason: "Passcode failed.")
-                }
+            }
+#endif
+            guard authorized else {
+                throw SecurityError.authenticationFailed(reason: "Not authorized.")
             }
 
             // Seed if first launch

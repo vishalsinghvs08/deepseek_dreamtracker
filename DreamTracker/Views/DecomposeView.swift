@@ -222,7 +222,7 @@ struct DecomposeView: View {
                     .fontWeight(.semibold)
             }
             .font(.headline)
-            .foregroundColor(.white)
+            .foregroundColor(Color.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
             .background(
@@ -319,7 +319,7 @@ struct DecomposeView: View {
         Text(horizon.shortLabel)
             .font(.caption2)
             .fontWeight(.bold)
-            .foregroundColor(.white)
+            .foregroundColor(Color.white)
             .padding(.horizontal, 8)
             .padding(.vertical, 3)
             .background(

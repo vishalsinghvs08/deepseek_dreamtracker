@@ -63,7 +63,7 @@ struct HomeView: View {
                 VStack(spacing: 4) {
                     Image(systemName: "sparkles")
                         .font(.system(size: 36, weight: .thin))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.white)
                         .symbolRenderingMode(.hierarchical)
                         .scaleEffect(titleGlow ? 1.15 : 1.0)
                         .shadow(color: .white.opacity(titleGlow ? 0.4 : 0.1), radius: 20)
@@ -71,7 +71,7 @@ struct HomeView: View {
 
                     Text("DreamTracker")
                         .font(.system(.largeTitle, design: .serif, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .shadow(color: .white.opacity(0.3), radius: 10)
                 }
                 .padding(.bottom, 60)
@@ -80,7 +80,7 @@ struct HomeView: View {
                 VStack(spacing: 16) {
                     Text("\"\(quotes[quoteIndex].text)\"")
                         .font(.system(.title2, design: .serif, weight: .light))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .italic()
                         .multilineTextAlignment(.center)
                         .lineSpacing(8)
@@ -90,7 +90,7 @@ struct HomeView: View {
 
                     Text("— \(quotes[quoteIndex].author)")
                         .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(Color.white.opacity(0.60))
                         .opacity(quoteOpacity)
                 }
                 .matchedGeometryEffect(id: "quote", in: transition)
@@ -110,12 +110,12 @@ struct HomeView: View {
                             Image(systemName: "arrow.right")
                                 .font(.system(size: 14, weight: .semibold))
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                         .padding(.horizontal, 32)
                         .padding(.vertical, 14)
                         .background(
                             Capsule()
-                                .fill(.ultraThinMaterial)
+                                .fill(Color.white.opacity(0.07))
                                 .overlay(
                                     Capsule()
                                         .stroke(.white.opacity(0.2), lineWidth: 1)

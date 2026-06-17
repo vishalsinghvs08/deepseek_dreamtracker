@@ -62,7 +62,7 @@ struct JournalView: View {
             Button { showWriteSheet = true } label: {
                 Label("Write First Entry", systemImage: "pencil")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 12)
                     .background(Capsule().fill(Color.blue))

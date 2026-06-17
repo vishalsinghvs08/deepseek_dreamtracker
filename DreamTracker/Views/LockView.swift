@@ -23,7 +23,7 @@ struct LockView: View {
                 // Icon
                 ZStack {
                     Circle()
-                        .fill(.ultraThinMaterial)
+                        .fill(Color.white.opacity(0.07))
                         .frame(width: 120, height: 120)
 
                     Circle()
@@ -71,7 +71,7 @@ struct LockView: View {
                         Text("Unlock")
                             .font(.headline)
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 52)
                     .background(

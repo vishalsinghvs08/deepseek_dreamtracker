@@ -101,7 +101,7 @@ struct DreamDetailView: View {
                             shareDream()
                         } label: {
                             Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(Color.white.opacity(0.60))
                         }
 
                         // More menu
@@ -116,7 +116,7 @@ struct DreamDetailView: View {
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(Color.white.opacity(0.60))
                         }
                     }
                 }
@@ -265,7 +265,7 @@ struct DreamDetailView: View {
                         .fill(
                             currentDream.isCompleted
                                 ? horizonColor
-                                : Color.white.opacity(0.06)
+                                : Color.white.opacity(0.08)
                         )
                         .frame(width: 72, height: 72)
                         .overlay(
@@ -326,12 +326,12 @@ struct DreamDetailView: View {
             if isEditing {
                 TextField("Your dream...", text: $editedTitle, axis: .vertical)
                     .font(.system(.largeTitle, design: .serif, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .lineLimit(2...4)
             } else {
                 Text(currentDream.title)
                     .font(.system(.largeTitle, design: .serif, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .strikethrough(currentDream.isCompleted)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .matchedGeometryEffect(id: "title-\(dream.id)", in: animationNamespace)
@@ -384,13 +384,13 @@ struct DreamDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Notes")
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(Color.white.opacity(0.60))
                 .textCase(.uppercase)
 
             if isEditing {
                 TextEditor(text: $editedNotes)
                     .font(.body)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .scrollContentBackground(.hidden)
                     .frame(minHeight: 120)
                     .padding(8)
@@ -438,7 +438,7 @@ struct DreamDetailView: View {
                     systemImage: "calendar"
                 )
                 .font(.caption)
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(Color.white.opacity(0.60))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

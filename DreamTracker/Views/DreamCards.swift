@@ -15,7 +15,7 @@ struct ParallelLivesCard: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(story.name)
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                     Text("In \(story.timeframe.rawValue.lowercased())")
                         .font(.caption)
                         .foregroundColor(planetaryColor(story.timeframe))
@@ -49,7 +49,7 @@ struct ParallelLivesCard: View {
                 Text(story.quote)
                     .font(.callout)
                     .italic()
-                    .foregroundColor(.white.opacity(0.6))
+                    .foregroundColor(Color.white.opacity(0.60))
                     .lineSpacing(4)
                     .padding(.leading, 12)
             }
@@ -99,7 +99,7 @@ struct DreamPulseRing: View {
                     // Empty track
                     Circle()
                         .trim(from: start, to: start + segmentFraction)
-                        .stroke(Color.white.opacity(0.06), style: StrokeStyle(lineWidth: 6))
+                        .stroke(Color.white.opacity(0.08), style: StrokeStyle(lineWidth: 6))
                         .frame(width: 90, height: 90)
                         .rotationEffect(.degrees(-90))
                 }
@@ -109,10 +109,10 @@ struct DreamPulseRing: View {
                     Text("\(completedDreams)")
                         .font(.title2)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.white)
                     Text("/\(totalDreams)")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.5))
+                        .foregroundColor(Color.white.opacity(0.35))
                 }
             }
 
@@ -128,10 +128,10 @@ struct DreamPulseRing: View {
                             .frame(width: 6, height: 6)
                         Text("\(horizon.shortLabel)")
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.7))
+                            .foregroundColor(Color.white.opacity(0.60))
                         Text("\(hCompleted)/\(hDreams.count)")
                             .font(.caption)
-                            .foregroundColor(.white.opacity(0.4))
+                            .foregroundColor(Color.white.opacity(0.35))
                     }
                 }
             }
@@ -162,7 +162,7 @@ struct CoachInsightCard: View {
                 Text(insight.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                 Text(insight.body)
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.65))
@@ -194,7 +194,7 @@ struct LifeSimulatorCard: View {
             HStack {
                 Text("🔮 Your Future")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                 Spacer()
             }
 
@@ -224,10 +224,10 @@ struct LifeSimulatorCard: View {
             Text(value)
                 .font(.title3)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(Color.white)
             Text(label)
                 .font(.caption2)
-                .foregroundColor(.white.opacity(0.45))
+                .foregroundColor(Color.white.opacity(0.35))
         }
     }
 }

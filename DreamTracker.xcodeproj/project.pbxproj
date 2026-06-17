@@ -43,7 +43,7 @@
 		B008AAAA00000000000002 /* ParallelLives.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000001 /* ParallelLives.swift */; };
 		B008AAAA00000000000004 /* DreamCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000003 /* DreamCoach.swift */; };
 		B008AAAA00000000000006 /* DreamCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008AAAA00000000000005 /* DreamCards.swift */; };
-		DSN000000000000000002 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DSN000000000000000001 /* DesignSystem.swift */; };
+		B009000000000000000002 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B009000000000000000001 /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +107,7 @@
 		B008AAAA00000000000001 /* ParallelLives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallelLives.swift; path = DreamTracker/Model/ParallelLives.swift; sourceTree = "<group>"; };
 		B008AAAA00000000000003 /* DreamCoach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamCoach.swift; path = DreamTracker/Model/DreamCoach.swift; sourceTree = "<group>"; };
 		B008AAAA00000000000005 /* DreamCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DreamCards.swift; path = DreamTracker/Views/DreamCards.swift; sourceTree = "<group>"; };
-		DSN000000000000000001 /* DesignSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignSystem.swift; path = DreamTracker/Views/DesignSystem.swift; sourceTree = "<group>"; };
+		B009000000000000000001 /* DesignSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignSystem.swift; path = DreamTracker/Views/DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,7 +256,6 @@
 				B002000000000000000001 /* DreamDetailView.swift */,
 				5CC6128F7497A0F2F478BA4C /* OrbitDial.swift */,
 				BBE2F5ADD39C9A7CFEA21DF7 /* DecomposeView.swift */,
-				DSN000000000000000001 /* DesignSystem.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -430,7 +429,7 @@
 				B008AAAA00000000000002 /* ParallelLives.swift in Sources */,
 				B008AAAA00000000000004 /* DreamCoach.swift in Sources */,
 				B008AAAA00000000000006 /* DreamCards.swift in Sources */,
-				DSN000000000000000002 /* DesignSystem.swift in Sources */,
+				B009000000000000000002 /* DesignSystem.swift in Sources */,
 );
 			runOnlyForDeploymentPostprocessing = 0;
 		};

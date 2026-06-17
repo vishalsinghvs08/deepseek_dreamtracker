@@ -83,7 +83,7 @@ struct OrbitDial: View {
                 }
                 Text(planetaryName(activeHorizon))
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
             }
             .frame(width: 110, height: 110)
             .cosmicSurface(level: .elevated, radius: 55)
