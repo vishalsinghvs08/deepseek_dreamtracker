@@ -52,29 +52,8 @@ struct DreamsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Cosmic space background
-                cosmicBackground
+                CosmicNebula()
                     .ignoresSafeArea()
-
-                // Animated floating star particles
-                TimelineView(.animation) { timeline in
-                    Canvas { context, size in
-                        let time = timeline.date.timeIntervalSince1970
-                        for i in 0..<80 {
-                            let seed = Double(i) * 13.7
-                            let x = (sin(seed * 1.3 + time * 0.015) * 0.5 + 0.5) * size.width
-                            let y = (cos(seed * 1.9 + time * 0.012) * 0.5 + 0.5) * size.height
-                            let r = 0.8 + sin(seed + time * 0.5) * 0.4
-                            let opacity = 0.15 + sin(time * 0.4 + seed) * 0.15
-                            context.fill(
-                                Path(ellipseIn: CGRect(x: x, y: y, width: r * 2.5, height: r * 2.5)),
-                                with: .color(.white.opacity(opacity))
-                            )
-                        }
-                    }
-                }
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
 
                 VStack(spacing: 0) {
                     progressHeader

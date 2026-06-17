@@ -10,20 +10,7 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Cosmic gradient background — deep navy → purple → black
-                LinearGradient(
-                    stops: [
-                        .init(color: Color(red: 0.05, green: 0.02, blue: 0.20), location: 0.0),
-                        .init(color: Color(red: 0.08, green: 0.02, blue: 0.12), location: 0.5),
-                        .init(color: .black, location: 1.0),
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-
-                // Floating star particles
-                starField
+                CosmicNebula()
                     .ignoresSafeArea()
 
                 // Main content

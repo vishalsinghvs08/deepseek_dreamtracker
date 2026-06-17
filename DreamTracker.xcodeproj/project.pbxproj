@@ -39,6 +39,7 @@
 		DC6B90702FDFFB7D00F3E164 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C811EE1EE5B4B659E416D5A /* LockView.swift */; };
 		DC6B90712FDFFB7D00F3E164 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF6E0B1B3A40DEA1CF8805 /* JournalView.swift */; };
 		B006000000000000000002 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006000000000000000001 /* HomeView.swift */; };
+		B007000000000000000002 /* CosmicNebula.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007000000000000000001 /* CosmicNebula.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		W001000000000000000001 /* DreamTrackerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamTrackerWidget.swift; sourceTree = "<group>"; };
 		W001000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B006000000000000000001 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = DreamTracker/Views/HomeView.swift; sourceTree = "<group>"; };
+		B007000000000000000001 /* CosmicNebula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CosmicNebula.swift; path = DreamTracker/Views/CosmicNebula.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,7 @@
 				ACF8117A8952B67692A6B592 /* OrbitDial.swift in Sources */,
 				A4DC55FCD71FA8A65B23E829 /* DecomposeView.swift in Sources */,
 							B006000000000000000002 /* HomeView.swift in Sources */,
+				B007000000000000000002 /* CosmicNebula.swift in Sources */,
 );
 			runOnlyForDeploymentPostprocessing = 0;
 		};
