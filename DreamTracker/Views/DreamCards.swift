@@ -56,12 +56,7 @@ struct ParallelLivesCard: View {
             .padding(.top, 12)
         }
         .padding(18)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
-        .overlay(
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(.white.opacity(0.08), lineWidth: 0.5)
-        )
+        .cosmicSurface(level: .base, radius: 18)
         .scaleEffect(appeared ? 1 : 0.92)
         .opacity(appeared ? 1 : 0)
         .onAppear {
@@ -142,12 +137,7 @@ struct DreamPulseRing: View {
             }
         }
         .padding(16)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
-        .overlay(
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(.white.opacity(0.08), lineWidth: 0.5)
-        )
+        .cosmicSurface(level: .base, radius: 18)
         .scaleEffect(appeared ? 1 : 0.95)
         .onAppear {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
@@ -182,12 +172,7 @@ struct CoachInsightCard: View {
             Spacer()
         }
         .padding(14)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(.white.opacity(0.06), lineWidth: 0.5)
-        )
+        .cosmicSurface(level: .base, radius: 14)
         .opacity(appeared ? 1 : 0)
         .offset(x: appeared ? 0 : -20)
         .onAppear {
@@ -225,12 +210,7 @@ struct LifeSimulatorCard: View {
                 .lineSpacing(3)
         }
         .padding(16)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
-        .overlay(
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(.white.opacity(0.08), lineWidth: 0.5)
-        )
+        .cosmicSurface(level: .base, radius: 18)
         .scaleEffect(appeared ? 1 : 0.95)
         .onAppear {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7).delay(0.1)) {

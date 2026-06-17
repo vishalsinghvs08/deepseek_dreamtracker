@@ -96,27 +96,36 @@ public extension View {
 // MARK: - Planetary Colors
 
 /// Returns the accent color for a given time horizon.
-/// Each horizon has a distinct hue in the cosmic palette.
-/// This is the SINGLE source of chromatic color in the app —
-/// all other colors should be grayscale.
+/// Refined planetary palette — warm, muted, cohesive.
+/// This is the SINGLE source of chromatic color in the app.
 public func planetaryColor(_ horizon: TimeHorizon) -> Color {
     switch horizon {
-    case .sixMonths:  return Color(red: 0.45, green: 0.65, blue: 1.00) // Cerulean
-    case .oneYear:    return Color(red: 0.65, green: 0.45, blue: 1.00) // Amethyst
-    case .threeYears: return Color(red: 0.40, green: 0.80, blue: 0.70) // Teal
-    case .fiveYears:  return Color(red: 1.00, green: 0.55, blue: 0.35) // Amber
-    case .tenYears:   return Color(red: 0.95, green: 0.35, blue: 0.55) // Rose
+    case .sixMonths:  return Color(red: 0.88, green: 0.52, blue: 0.32) // Warm terracotta
+    case .oneYear:    return Color(red: 0.32, green: 0.68, blue: 0.58) // Soft teal
+    case .threeYears: return Color(red: 0.28, green: 0.55, blue: 0.82) // Calm blue
+    case .fiveYears:  return Color(red: 0.55, green: 0.38, blue: 0.68) // Muted plum
+    case .tenYears:   return Color(red: 0.42, green: 0.42, blue: 0.78) // Soft indigo
     }
 }
 
 /// Icon name for each horizon's planetary representation.
 public func planetaryIcon(_ horizon: TimeHorizon) -> String {
     switch horizon {
-    case .sixMonths:  return "moon.stars"
-    case .oneYear:    return "sun.max"
-    case .threeYears: return "globe.asia.australia"
-    case .fiveYears:  return "star.circle"
-    case .tenYears:   return "sparkles"
+    case .sixMonths:  return "flame"
+    case .oneYear:    return "leaf"
+    case .threeYears: return "globe.americas"
+    case .fiveYears:  return "bolt"
+    case .tenYears:   return "star"
+    }
+}
+
+public func planetaryName(_ horizon: TimeHorizon) -> String {
+    switch horizon {
+    case .sixMonths:  return "Ignite"
+    case .oneYear:    return "Grow"
+    case .threeYears: return "Build"
+    case .fiveYears:  return "Master"
+    case .tenYears:   return "Legacy"
     }
 }
 

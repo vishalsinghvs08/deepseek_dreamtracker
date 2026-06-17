@@ -26,9 +26,8 @@ struct OrbitDial: View {
             // ── Rotating ring + ticks ──
             Group {
                 Circle()
-                    .fill(.ultraThinMaterial)
+                    .cosmicSurface(level: .floating, radius: dialSize / 2)
                     .frame(width: dialSize, height: dialSize)
-                    .shadow(color: .black.opacity(0.08), radius: 20, y: 10)
 
                 Circle()
                     .stroke(
@@ -87,8 +86,7 @@ struct OrbitDial: View {
                     .foregroundColor(.white)
             }
             .frame(width: 110, height: 110)
-            .background(.ultraThinMaterial)
-            .clipShape(Circle())
+            .cosmicSurface(level: .elevated, radius: 55)
         }
         .frame(width: dialSize, height: dialSize)
         .gesture(
@@ -169,42 +167,6 @@ struct OrbitDial: View {
             }
         }
     }
-}
-
-// MARK: - Refined Planetary Palette (cohesive, less saturated)
-
-func planetaryColor(_ horizon: TimeHorizon) -> Color {
-    switch horizon {
-    case .sixMonths:  return Color(red: 0.88, green: 0.52, blue: 0.32) // Warm terracotta
-    case .oneYear:    return Color(red: 0.32, green: 0.68, blue: 0.58) // Soft teal
-    case .threeYears: return Color(red: 0.28, green: 0.55, blue: 0.82) // Calm blue
-    case .fiveYears:  return Color(red: 0.55, green: 0.38, blue: 0.68) // Muted plum
-    case .tenYears:   return Color(red: 0.42, green: 0.42, blue: 0.78) // Soft indigo
-    }
-}
-
-func planetaryIcon(_ horizon: TimeHorizon) -> String {
-    switch horizon {
-    case .sixMonths:  return "flame"
-    case .oneYear:    return "leaf"
-    case .threeYears: return "globe.americas"
-    case .fiveYears:  return "bolt"
-    case .tenYears:   return "star"
-    }
-}
-
-func planetaryName(_ horizon: TimeHorizon) -> String {
-    switch horizon {
-    case .sixMonths:  return "Ignite"
-    case .oneYear:    return "Grow"
-    case .threeYears: return "Build"
-    case .fiveYears:  return "Master"
-    case .tenYears:   return "Legacy"
-    }
-}
-
-func horizonColor(_ horizon: TimeHorizon) -> Color {
-    planetaryColor(horizon)
 }
 
 #Preview {

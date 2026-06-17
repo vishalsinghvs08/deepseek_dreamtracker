@@ -418,14 +418,7 @@ struct DreamDetailView: View {
             }
         }
         .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(.white.opacity(0.1), lineWidth: 0.5)
-        )
+        .cosmicSurface(level: .base, radius: 16)
     }
 
     // MARK: - Meta

@@ -117,17 +117,7 @@ struct DreamsView: View {
 
     private var cosmicBackground: some View {
         ZStack {
-            // Deep cosmic gradient — navy → deep purple → black
-            LinearGradient(
-                colors: [
-                    Color(red: 0.04, green: 0.04, blue: 0.18),
-                    Color(red: 0.08, green: 0.04, blue: 0.22),
-                    Color(red: 0.03, green: 0.02, blue: 0.12),
-                    Color.black
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            cosmicGradient
 
             // Star particles
             Canvas { context, size in
@@ -337,24 +327,13 @@ struct DreamsView: View {
             }
             .padding(.vertical, 14)
             .padding(.horizontal, 16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(.ultraThinMaterial)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(.white.opacity(0.15), lineWidth: 0.5)
-            )
+            .cosmicSurface(radius: 16)
         }
         .padding(.horizontal, 16)
         // Alternating offset for flowing feel
         .padding(.leading, isEven ? 0 : 8)
         .padding(.trailing, isEven ? 8 : 0)
-        .background(
-            RoundedRectangle(cornerRadius: 18)
-                .fill(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.2), radius: 12, x: 0, y: 6)
-        )
+        .cosmicSurface(level: .elevated, radius: 18)
         // Completed golden shimmer overlay
         .overlay(
             Group {
@@ -493,14 +472,7 @@ struct DreamsView: View {
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundStyle(.white)
                 .frame(width: 56, height: 56)
-                .background(
-                    Circle()
-                        .fill(.ultraThinMaterial)
-                )
-                .overlay(
-                    Circle()
-                        .stroke(.white.opacity(0.2), lineWidth: 1)
-                )
+                .cosmicSurface(level: .floating, radius: 28)
                 .shadow(color: .black.opacity(0.4), radius: 16, y: 8)
         }
     }
